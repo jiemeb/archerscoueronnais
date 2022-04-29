@@ -1,0 +1,162 @@
+BODY {
+	font-family: arial;
+  background-color: #E7DDDD;
+	-webkit-print-color-adjust: exact;
+	background-color: #fff!important;
+  color: #000!important;
+	margin:2px;
+	font-size: 12px arial;
+
+	}
+
+
+h1 {
+  font-size: 34px;
+  text-align: center;
+  margin: 0;
+  text-shadow: 3px 3px 1px grey;
+}
+
+h2 {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+}
+.grasrouge{font-weight:bold;color:red;}
+.cel{border-top: 2px double ; border-bottom: 2px double ; border-left: 2px double ; border-right:2px ;border: 5px outset black; padding: 0,1cm;	font-family: Calibri , serif; font-size: 10pt;}
+.cel-background {background-color: black !important ; -webkit-print-color-adjust: exact;color: white;}
+/*===========================*/
+/*Description layers de base */
+/*===========================*/
+
+.myHeader {
+
+display: grid;
+grid-template-columns: (3,auto);
+grid-auto-columns: (max-content,auto);
+
+grid-gap: 2px;
+grid-auto-rows: minmax(85, auto);
+}
+
+.myHeader1 {
+
+  grid-column: 1 ;
+  grid-row: 1;
+ height: 85px;
+   width: 200px;
+     background: url(../images/logo.jpg) no-repeat top left;
+
+}
+.myHeader2 {
+  grid-column: 2 ;
+  grid-row: 1;
+
+}
+.myHeader3 {
+
+  grid-column: 3 ;
+  grid-row: 1;
+  height: 85px;
+  width: 200px;
+   background: url(../images/cible.gif) no-repeat top right;
+
+}
+
+
+
+
+div#container {
+ 	clear: both;
+  background-color: #E7DDDD;
+	-webkit-print-color-adjust: exact;
+	width: 100%;
+  margin: 0 auto;
+  padding: 0.5em 0 2em;
+}
+
+
+
+
+
+
+/*==============*/
+/*LIENS         */
+/*==============*/
+
+.liens1 {
+color : #404040;
+text-decoration: underline;
+FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+font-size : 12px;
+}
+
+A:HOVER.liens1 {
+color : #F46432;
+text-decoration: none;
+FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+font-size : 12px;
+}
+
+.liens2 {
+color : #000000;
+text-decoration: underline, bold;
+FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+font-size : 9px;
+}
+
+A:HOVER.liens2 {
+color : #F46432;
+text-decoration: underline, bold;
+FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+font-size : 9px;
+}
+
+/*===================*/
+/*CHAMPS DE SAISIE   */
+/*===================*/
+.input0 {
+font : Arial;
+font-size : 18px;
+border: 1px #000000 solid;
+border-color: #000000 #000000 #000000 #000000;
+height: 22px;
+}
+.input1 {
+font : 12px Arial;
+border: 1px #000000 solid;
+border-color: #000000 #000000 #000000 #000000;
+height: 20px;
+}
+
+.inputPrevious {
+font : 12px Arial;
+border: 1px #000000 solid;
+border-color: #000000 #000000 #000000 #000000;
+height: 20px;
+background: url('images/bt_retour.gif') no-repeat;
+}
+
+.inputNext {
+font : 12px Arial;
+border: 2px #000000 solid;
+border-color: #000000 #000000 #000000 #000000;
+height: 80px;
+background-image: url('images/bt_suivant.gif') no-repeat;
+}
+
+/*===================*/
+/*CHAMPS DE SAISIE   */
+/*===================*/
+
+.td_title{
+  background-color: #F7AD52;
+}
+
+.td_pair{
+  background-color: #FBE1C5;
+}
+
+.td_impair{
+  background-color: #FED0A4;
+}
