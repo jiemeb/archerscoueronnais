@@ -35,7 +35,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
     function getAge() {
       var dateNaissance = new Date(document.getElementById("formulaire").elements["dateNaissance"].value);
       //     var diff = Date.now() - dateNaissance.getTime();
-      var date_fin = new Date('2022-12-31');
+      var date_fin = new Date('2023-12-31');
 
       var diff = date_fin - dateNaissance.getTime();
 
@@ -62,7 +62,6 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
           case 10:
             document.getElementById("categories").value = 0;
             break;
-
           case 11:
           case 12:
             document.getElementById("categories").value = 1;
@@ -113,7 +112,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2021-2022</h2>
+				<h2>Inscriptions saison 2022-2023</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
@@ -267,12 +266,12 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
               <div class="mb-2">
                 <label class="form-label">Catégories de l'archer*</label>
                 <select class="form-select" name="categories" id="categories">
-                  <option value=0>Poussins - Années de naissance : Apres 2011 - Tarif 67 euros</option>
-                  <option value=1>Benjamins - Années de naissance : 2011 et 2010 - Tarif 67 euros</option>
-                  <option value=2>Minimes - Années de naissance : 2009 et 2008 - Tarif 70 euros</option>
-                  <option value=3>Cadets - Années de naissance : 2007, 2006 et 2005 - Tarif 70 euros</option>
-                  <option value=4>Jeunes - Années de naissance : 2004, 2003 et 2002 - Tarif 80 euros</option>
-                  <option value=5>Séniors - Années de naissance : avant 2001 - Tarif 95 euros</option>
+                  <option value=0>Poussins - Années de naissance : Apres 2012 - Tarif 67 euros</option>
+                  <option value=1>Benjamins - Années de naissance : 2012 et 2011 - Tarif 67 euros</option>
+                  <option value=2>Minimes - Années de naissance : 2010 et 2009 - Tarif 70 euros</option>
+                  <option value=3>Cadets - Années de naissance : 2008, 2007 et 2006 - Tarif 70 euros</option>
+                  <option value=4>Jeunes - Années de naissance : 2005, 2004 et 2003 - Tarif 80 euros</option>
+                  <option value=5>Séniors - Années de naissance : avant 2003 - Tarif 95 euros</option>
                 </select>
               </div>
             </div>

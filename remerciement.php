@@ -30,7 +30,7 @@ include("inc/prixCotisation.php");
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2021-2022</h2>
+				<h2>Inscriptions saison 2022-2023</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>

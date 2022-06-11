@@ -28,7 +28,7 @@ include("inc/prixCotisation.php");
 	<div class="myHeader1"> </div>
 	<div class="myHeader2" >
 		<h1>Archers de Coüeron</h1>
-		<h2>Inscriptions saison 2021-2022</h2>
+		<h2>Inscriptions saison 2022-2023</h2>
 	</div>
 	<div class="myHeader3"> </div>
 
@@ -40,7 +40,7 @@ include("inc/prixCotisation.php");
     <?php  //<div style="width:200px;height:300px;background-color:teal;">
 
 print ( "
-<h2>AUTORISATION PARENTALE  - VALIDITÉ SAISON 2021 2022</h2>
+<h2>AUTORISATION PARENTALE  - VALIDITÉ SAISON 2022 2023</h2>
 <pre>
 
 Pour un enfant mineur ou autorisation pour un incapable majeur
@@ -50,7 +50,7 @@ Pour un enfant mineur ou autorisation pour un incapable majeur
 Madame, Monsieur,
 
 
-Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2021/2022, et nous vous en remercions.
+Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2022/2023, et nous vous en remercions.
 Nous vous rappelons que la section n’est plus responsable de votre enfant en dehors des horaires et jours d’entraînement.
 Durant cette année votre enfant peut être amené à participer à des concours.
 Pour qu’il puisse être pris en charge pour son transport, par la section ou une autre famille,

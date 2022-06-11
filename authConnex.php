@@ -37,19 +37,19 @@ include("inc/connexion.php");
 */
 
 
-	 	$idUser 		= $_POST["idUser"];
+	 	$idUser 	= $_POST["idUser"];
 		$passWord 	= $_POST["passWord"];
 
 
-		$result = "select id_user, mot_passe from users where id_user = '".$idUser."';";
+		$result = "select id_user, mot_passe ,authorized from users where id_user = '".$idUser."';";
 		   echo "sql ".$result ;
 		$myQueryRes = mysqli_query ($connexion,$result) or die("Une erreur est survenue dans l'�x�cution de la requ�te.");
 
 
 			if ($manager_row = $myQueryRes->fetch_assoc()) {
-		 	$id_user			=  $manager_row ['id_user'];
+		 	$id_user		=  $manager_row ['id_user'];
 			$mot_passe		= $manager_row ['mot_passe'];
-
+			$authorized		= $manager_row ['authorized'] ;
 
 
 			echo 'coucou connect '.$id_user.' passe '.$mot_passe ;
@@ -79,7 +79,7 @@ include("inc/connexion.php");
 		}
 
 
-if( $loginOK == 0 ){
+if( $loginOK != 0 ){
 	echo '<form name="form_error" action="form_error.php" method="post">';
 	echo '</form>';
 	echo '<script language="javascript">';

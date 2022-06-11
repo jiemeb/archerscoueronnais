@@ -25,19 +25,19 @@ session_start();
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2021-2022</h2>
+				<h2>Inscriptions saison 2022-2023</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
 	</div>
-
+<!---
 <center>
 	<p>
 		<br>
 			<label class="form-label"><marquee bgcolor="red">Dernière minute............Plus de place pour les jeunes...reste 2 places pour les poussins.........Dernière minute</marquee></label>
 		<br>
 	</p>
-</center>
+</center> --->
 
 	<div class="container">
 		<div class="row">
@@ -47,7 +47,7 @@ session_start();
 					Cher.e.s lidencié.e.s et familles,<br><br>
 				</p>
 				<p>
-					Le Bureau a décidé de modifier les modalités d'inscriptions pour cette nouvelle saison. Les inscriptions se font en ligne via le formulaire de la page suivante. Ce document sera à vérifier, compléter et signer. Il devra être remis accompagné du paiement et des pièces suivantes :
+					Le Bureau a décidé de continuer les modalités d'inscriptions pour cette nouvelle saison. Les inscriptions se font en ligne via le formulaire de la page suivante. Ce document sera à vérifier, compléter et signer. Il devra être remis accompagné du paiement et des pièces suivantes :
 				</p>
 
 
@@ -60,11 +60,11 @@ session_start();
 				<p>
 					L'inscription sera complète et prise en compte qu'à réception du dossier COMPLET. <br><br>
 
-					Pour les renouvellements de licence, inscriptions sur le site du 22 juin au 5 juillet 2021.
+					Pour les renouvellements de licence, inscriptions sur le site du 11 juin au 25 juin 2022.
 
-					<br>Pour les nouvelles inscriptions, elles auront lieu entre le 6 Juillet et le 29 juillet 2021. Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.
-<br><br><b>Le dossier COMPLET</b> est à retourner du 22 Juin au 15 juillet  2021 à Frédérique MABILAIS, 89 quater rue Arsène Leloup 44220 COUËRON<br>
-et du 22 juillet au 5 août 2021 à Nicolas RAMEL, 8 rue Jules Ferry 44220 COUËRON.<br><br>
+					<br>Pour les nouvelles inscriptions, elles auront lieu entre le 25 Juin et le 29 juillet 2022. Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.
+<br><br><b>Le dossier COMPLET</b> est à retourner du 25 Juin au 15 juillet  2022 à Frédérique MABILAIS, 89 quater rue Arsène Leloup 44220 COUËRON<br>
+ou 25 Juin au 13 Juillet du 1 Aout au 11 août 2022 à Jean-Marie Bonnand 18 le herault 44360 Saint Etienne de Montluc.<br><br>
 <br><br><br><br>
 
 					*Certificat médical<br>

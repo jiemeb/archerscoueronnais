@@ -5,4 +5,5 @@
    
    echo 'You have cleaned session';
    header('Refresh: 2; URL = ../validAuthorized.php');
+   
 ?>

@@ -30,7 +30,7 @@ include("inc/prixCotisation.php");
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2021-2022</h2>
+				<h2>Inscriptions saison 2022-2023</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
@@ -55,14 +55,15 @@ include("inc/prixCotisation.php");
 <div id=noprint>
 <span><br><br>
   <input class="btn btn-success"  value="Impression" title="Impression" onclick='PrintDiv();'>
-  <span><br> Imprimer le document en utilisant le bouton Impression. <br>
+  <span><br> Imprimer le document en utilisant le <b>"bouton Impression"</b>. <br>
     mettre en option d'impression: "2 pages par feuille -et- Recto-verso bord court" <br>
-  Signer le document et nous le faire parvenir par courrier ou par mail ou de la main à la main lors de notre rendez-vous </span>
+  Signer le document et nous le faire parvenir par courrier ou par mail ou de la main à la main lors de notre rendez-vous
+   </span>
 </div>
 <div id=noprint>
 	<br>
   <div class="col mb-5 mt-5">
-    <a href="reglement.php" class="btn btn-secondary">edittion du reglement<i class="fas fa-angle-right"></i></a>
+    <a href="reglement.php" class="btn btn-secondary">Suivant<i class="fas fa-angle-right"></i></a>
   </div>
 </div>
 
@@ -84,7 +85,7 @@ include("inc/prixCotisation.php");
         <b>Categories</b></p>
         </td>
         <td width="168" class="cel"><p align="center" style=" margin-top: 0.14cm">
-        <b>age en 2022</b></p>
+        <b>age en 2023</b></p>
         </td>
         <td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
           <b>Prix cotisation</b></p>
@@ -179,7 +180,7 @@ include("inc/prixCotisation.php");
     <img src="images/dossierInscriptionLogo.png" name="Forme2" alt="Forme2"  text-align="center" />
 	<br>
     <h2 style="margin-left: 0cm; text-indent: 0cm; margin-top: 0.13cm">
-    		<font color="#ffffff"><span text-align="center" style="background: #231f20">SAISON 2021-2022</span></font></h2>
+    		<font color="#ffffff"><span text-align="center" style="background: #231f20">SAISON 2022-2023</span></font></h2>
   <LABEL> <h2>ÉTOILE SPORTIVE COUËRONNAISE, association depuis 1910.</h2><br><br>
 Extrait de l’article 6 des statuts : «L’association est affiliée aux Fédérations Sportives Nationales régissant les sports qu’elle pratique, ainsi qu’à la Ligue Française de l’Enseignement et de l’Éducation permanente, et par la suite à l’Union Française des Œuvres d’Éducation Physique (UFOLEP) exception faite pour la section Athlétisme qui reste affiliée à la F.S.G.T»
 C’est donc un club Multisports qui comprend des sections :<br>
@@ -215,14 +216,14 @@ Contacts ESC	 Didier Ménard<br>
   echo "Représentant légal: nom <strong>".$_SESSION['nomRep2']."</strong> prénom <strong>".$_SESSION['prenomRep2']."</strong><br>";
   ?>
   <h2  >
-  		<font color="#ffffff"><span  align="center" style="background: #231f20">AUTORISATION PARENTALE - VALIDITÉ SAISON 2021-22</span></font></h2>
+  		<font color="#ffffff"><span  align="center" style="background: #231f20">AUTORISATION PARENTALE - VALIDITÉ SAISON 2022-23</span></font></h2>
 <br>
 
 <span>
   Pour un enfant mineur ou autorisation pour un incapable majeur<br>
 <br>
   Madame, Monsieur,<br>
-  Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2021/2022, et nous vous en remercions.<br>
+  Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2022/2023, et nous vous en remercions.<br>
   Nous vous rappelons que la section n’est plus responsable de votre enfant en dehors des horaires et jours d’entraînement.<br>
   Durant cette année votre enfant peut être amené à participer à des concours.<br>
   Pour qu’il puisse être pris en charge pour son transport, par la section ou une autre famille, nous vous invitons à compléter et signer la décharge parentale ci-dessous.<br>
@@ -254,7 +255,7 @@ Contacts ESC	 Didier Ménard<br>
 <hr>
 <!--  page 4 -->
 <h2  style="page-break-before: always ; page-break-after: auto; page-break-inside: auto"; align="center" >
-		<font color="#ffffff"><span  text-align="center" style="background: #231f20">SAISON 2021-2022</span></font></h2>
+		<font color="#ffffff"><span  text-align="center" style="background: #231f20">SAISON 2022-2023</span></font></h2>
 
 
   	<table width="100%" cellpadding="2" cellspacing="1" style="background: transparent; border-top: 2px double ; border-bottom: 2px double ; border-left: 2px double ; border-right:2px double; ">
@@ -294,12 +295,12 @@ echo "<br><br><br><br><table>";
 $prix = 0;
 if ($_SESSION['kit'] == 'oui') {echo("<tr><td>&ensp; Commande de Kit ................................</td><td>".$kit." €</td></td>");$prix += $kit ;}
 if ($_SESSION['lot'] == 'oui') {echo("<tr><td>&ensp;       Commande de 3 flèches supplémentaires </td><td><u>".$lot." €</u></td></tr>");$prix += $lot ;}
-if ($prix != 0)       {         echo ("<tr><td>            Total  fourniture optionnelle......................</td><td>".$prix." €</td></tr><br><br>") ;}
+if ($prix != 0)       {         echo ("<tr><td>            Total  fourniture optionnelle......................</td><td>".$prix." €</td></tr><br><br><br>") ;}
 echo("<tr><td>Prix de la license  </td><td>".$license[$_SESSION['categories']]." €</td></tr></table>");$prix += $license[$_SESSION['categories']] ;
-if ($prix != 0)
-echo "Faire si possible 2 chèques à l'ordre de l'<b>ESC archers de Coueron </b><br><br><br>";
+if ($prix != $license[$_SESSION['categories']])
+echo "si vous faites une commande de kit faire si possible 2 chèques à l'ordre de l'<b>ESC archers de Coueron </b><br><br>";
 else {
-  echo "<br><br><br><br>";
+  echo "<br><br><br>";
 }
  ?>
 Je reconnais avoir pris connaissance des conditions de souscription d'une assurance complémentaire individuelle présentée ci-contre ainsi que du <b>règlement intérieur de la section présenté en page annexe.</b>

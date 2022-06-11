@@ -73,7 +73,7 @@ if (isset($_SESSION['authorized'])== true) {
 	echo "Bienvenue sur le site d'aministration";
 	?>
 
-	<br><a href="lecture_all.php" target="_blank"> Lecture total <br></a>
+	<br><a href="administration/lecture_all.php" target="_blank"> Lecture total <br></a>
 
 	<?php	
 }	
@@ -82,3 +82,6 @@ if (isset($_SESSION['authorized'])== true) {
 	<a href="inc/logout.php" class="btn btn-secondary">exit<i class="fas fa-angle-right"></i></a>
 </body>
 </html>
+<?php
+mysqli_close($connexion);
+?>
