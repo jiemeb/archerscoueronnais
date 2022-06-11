@@ -11,23 +11,20 @@ include(dirname(__FILE__).'/../inc/entete.php');
 if(isset($_SESSION['authorized']))
 {
 
-
-
-
-	 $sql = "SELECT   categories, civilite, prenom, nom,dateNaissance, listAttente   from adherents order by dateNaissance desc " ;
+	 $sql = "SELECT   categories, civilite, prenom, nom,dateNaissance, listAttente ,dossier  from adherents order by dateNaissance desc " ;
 
 
 
 
 // on envoie la requête
-//$req = mysqli_query($connexion,$sql) 
+//$req = mysqli_query($connexion,$sql)
 $req = mysqli_query($connexion,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 
 // on fait une boucle qui va faire un tour pour chaque enregistrement
 
 while($data = mysqli_fetch_assoc($req))
     {
-	echo '<div class="row">';
+	  echo '<div class="row">';
 		echo'		<div class="col-md">';
 		echo'					<div class="mb-2"> ';
 		echo  $data['categories'] ;
@@ -52,17 +49,23 @@ while($data = mysqli_fetch_assoc($req))
 		echo'					</div> ';
 		echo'				</div> ';
 
-				echo'		<div class="col-md">';
-				echo'					<div class="mb-2"> ';
-				echo $data['dateNaissance']			;
-				echo'					</div> ';
-				echo'				</div> ';
+		echo'		<div class="col-md">';
+		echo'					<div class="mb-2"> ';
+		echo $data['dateNaissance']			;
+		echo'					</div> ';
+		echo'				</div> ';
 
 		echo'		<div class="col-md">';
 		echo'					<div class="mb-2"> ';
 		echo $data['listAttente']			;
 		echo'					</div> ';
 		echo'				</div> ';
+
+    echo'		<div class="col-md">';
+    echo'					<div class="mb-2"> ';
+    echo $data['dossier']			;
+    echo'					</div> ';
+    echo'				</div> ';
 
 		echo '</Div>';
     }
