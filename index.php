@@ -60,11 +60,15 @@ session_start();
 				<p>
 					L'inscription sera complète et prise en compte qu'à réception du dossier COMPLET. <br><br>
 
-					Pour les renouvellements de licence, inscriptions sur le site du 11 juin au 25 juin 2022.
+					Pour les renouvellements de licence, réinscriptions en ligne obligatoire <u>du 12 juin au 25 juin 2022.</u>
 
 					<br>Pour les nouvelles inscriptions, elles auront lieu entre le 25 Juin et le 23 juillet 2022. Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.
-<br><br><b>Le dossier COMPLET</b> est à retourner du 25 Juin au 5 juillet  2022 à Frédérique MABILAIS, 89 quater rue Arsène Leloup 44220 COUËRON<br>
-ou 25 Juin au 13 Juillet du 1 Aout au 11 août 2022 à Jean-Marie Bonnand 18 le herault 44360 Saint Etienne de Montluc.<br><br>
+<br><br><b>Le dossier COMPLET est à déposer : <br>
+					<u>- le 22 juin de 18h30 à 20h30  permanence à la salle René Gaudin</u>
+					<br><b>OU</b></br>
+					<u>- du 12 Juin au 23 juillet  2022 dans la boite aux lettres de Frédérique MABILAIS</u>, 89 quater rue Arsène Leloup 44220 COUËRON<br>
+<br><br>
+<b>Chaque dossier devra être COMPLET pour que la réinscription soit validée. </>
 <br><br><br><br>
 
 					*Certificat médical<br>

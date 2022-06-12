@@ -7,7 +7,7 @@ include("inc/connexion.php");
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Texte</title>
+<title>Administration Archers de Coueron</title>
 <style>
 </style>
 </head>
@@ -74,12 +74,14 @@ if (isset($_SESSION['authorized'])== true) {
 	?>
 
 	<br><a href="administration/lecture_all.php" target="_blank"> Lecture total <br></a>
+	<br><a href="administration/archer.php" target="_blank"> archer  <br></a>
 
 	<?php	
 }	
 ?>
 	<br>
 	<a href="inc/logout.php" class="btn btn-secondary">exit<i class="fas fa-angle-right"></i></a>
+	
 </body>
 </html>
 <?php
