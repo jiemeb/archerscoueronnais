@@ -8,9 +8,9 @@ include(dirname(__FILE__).'/../inc/entete.php');
 
 
 <?php
-$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente" ) ;
+$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("email1","telephone1","dossier" ,"certificat", "lateralite", "arc" ,"chequeKit"  ,"chequeCotisation");
+$arrayValue= array("dossier" ,"certificat", "lateralite", "arc" ,"chequeKit"  ,"chequeCotisation");
 
 if(isset($_SESSION['authorized']))
 {
@@ -31,7 +31,7 @@ $arrayArcher = array () ;
 <?php
 while ($rowArcher = mysqli_fetch_assoc($reqArcher))
 {
-$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];	
+$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
 echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
 }
 echo '</select>' ;
@@ -83,18 +83,18 @@ $i=0;
 	 {   echo "</div>";
 		 echo "<div class='row'>";
 	 }
- 
+
  $i++;
 echo "<div class='col-md'>";
 echo "	<div class='mb-2'>";
-echo  $data[$element] ; 
+echo  $data[$element] ;
 echo "	</div> ";
 echo "</div> ";
- 
+
  }
  echo "</div>" ;
- 
-	
+
+
 $i=0;
 foreach($arrayValue as $element)
 {

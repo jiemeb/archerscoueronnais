@@ -10,8 +10,31 @@ include(dirname(__FILE__).'/../inc/entete.php');
 <?php
 if(isset($_SESSION['authorized']))
 {
+  $arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 
-	 $sql = "SELECT   categories, civilite, prenom, nom,dateNaissance, listAttente ,dossier  from adherents order by dateNaissance desc " ;
+  if(isset($_GET['nbLigne']))
+  {
+    $_SESSION['nbLigne'] = $_GET['nbLigne'] ;
+  }
+  if(isset ($_SESSION['nbLigne']))
+   {
+    $nbLigne=(int)$_SESSION['nbLigne'];
+  }
+  else
+  {
+  $nbLigne=9 ;
+  }
+
+  $elementsFixe = "";
+  foreach($arrayValueFixe as $element)
+  {
+
+  if (empty($elementsFixe))
+  $elementsFixe =$element." ";
+  else
+  $elementsFixe =$elementsFixe.",".$element." ";
+  }
+	 $sql = "SELECT   ".$elementsFixe."  from adherents order by dateNaissance desc " ;
 
 
 
@@ -21,51 +44,33 @@ if(isset($_SESSION['authorized']))
 $req = mysqli_query($connexion,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 
 // on fait une boucle qui va faire un tour pour chaque enregistrement
+//echo "<label class='form-label'>element par ligne</label>" ;
+//echo "<input type='text' name=nnLigne id='nbLigne' class='form-control' value=".$nbligne." >";
 
 while($data = mysqli_fetch_assoc($req))
     {
-	  echo '<div class="row">';
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo  $data['categories'] ;
-		echo'					</div> ';
-		echo'				</div> ';
 
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo $data['civilite']			;
-		echo'					</div> ';
-		echo'				</div> ';
+    $i=0;
 
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo $data['prenom']			;
-		echo'					</div> ';
-		echo'				</div> ';
+	  echo '<div class="row" >';
 
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo $data['nom']			;
-		echo'					</div> ';
-		echo'				</div> ';
 
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo $data['dateNaissance']			;
-		echo'					</div> ';
-		echo'				</div> ';
+    foreach($arrayValueFixe as $element)
+    {
+   	 if (!($i%$nbLigne))
+   	 {   echo "</div>";
+   		 echo "<div class='row'>";
+   	 }
 
-		echo'		<div class="col-md">';
-		echo'					<div class="mb-2"> ';
-		echo $data['listAttente']			;
-		echo'					</div> ';
-		echo'				</div> ';
+    $i++;
+   echo "<div class='col-md'>";
+   echo "	<div class='mb-2'>";
+      echo "<label class='form-label'>".$element."=</label>" ;
+  echo  $data[$element] ;
+   echo "	</div> ";
+   echo "</div> ";
 
-    echo'		<div class="col-md">';
-    echo'					<div class="mb-2"> ';
-    echo $data['dossier']			;
-    echo'					</div> ';
-    echo'				</div> ';
+    }
 
 		echo '</Div>';
     }
