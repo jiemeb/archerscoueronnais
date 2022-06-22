@@ -51,7 +51,6 @@ $elements =$elements.",".$element." ";
 $elementsFixe = "";
 foreach($arrayValueFixe as $element)
 {
-
 if (empty($elementsFixe))
 $elementsFixe =$element." ";
 else
@@ -93,8 +92,7 @@ echo "</div> ";
  
  }
  echo "</div>" ;
- 
-	
+ 	
 $i=0;
 foreach($arrayValue as $element)
 {

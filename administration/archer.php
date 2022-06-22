@@ -10,7 +10,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
 <?php
 $arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("dossier" ,"certificat", "lateralite", "arc" ,"chequeKit"  ,"chequeCotisation");
+$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation");
 
 if(isset($_SESSION['authorized']))
 {
@@ -87,10 +87,10 @@ $i=0;
  $i++;
 echo "<div class='col-md'>";
 echo "	<div class='mb-2'>";
+echo "<label class='form-label'>".$element."=</label>" ;
 echo  $data[$element] ;
 echo "	</div> ";
 echo "</div> ";
-
  }
  echo "</div>" ;
 
