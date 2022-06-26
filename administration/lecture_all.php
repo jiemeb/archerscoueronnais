@@ -65,8 +65,8 @@ while($data = mysqli_fetch_assoc($req))
     $i++;
    echo "<div class='col-md'>";
    echo "	<div class='mb-2'>";
-      echo "<label class='form-label'>".$element."=</label>" ;
-  echo  $data[$element] ;
+   echo "<label class='form-label'>".$element."=</label>" ;
+   echo  $data[$element] ;
    echo "	</div> ";
    echo "</div> ";
 
