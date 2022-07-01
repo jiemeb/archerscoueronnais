@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("inc/connexion.php");
-?> 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -17,19 +17,19 @@ include("inc/connexion.php");
 	{
 		if (isset($_SESSION['count']) && ($_SESSION['count'] > 4)) {
 			header('Location: http://www.google.com/');
-		} 
-		else 
+		}
+		else
 		{
-			
+
 	if(isset($_POST['login']) && isset ($_POST['password']) )
 		{
 			$_SESSION['login']= htmlspecialchars($_POST['login']);
-			
-		}	
+
+		}
 
 	if ( isset ($_SESSION['login']))
 		{
-		$login = $_SESSION['login']	;	
+		$login = $_SESSION['login']	;
 
 		$query = sprintf("SELECT mot_passe,authorized FROM users WHERE id_user='%s' ;",$login);
 		$row = mysqli_fetch_assoc(mysqli_query($connexion, $query));
@@ -39,36 +39,36 @@ include("inc/connexion.php");
 			{
 				$_SESSION['authorized'] = true ;
 				echo "Utilisateur validé";
-				echo("<meta http-equiv='refresh' content='1'>");	
+				echo("<meta http-equiv='refresh' content='1'>");
 
 			}
 			else {
 				echo"Demandez a votre administrateur de valider vote compte";
 			}
-		} 
+		}
 		else {
 			echo 'L\'authentification a échoué pour ' . htmlspecialchars($login) . '.';
-			
+
 			if (!isset($_SESSION['count'])) {
 				$_SESSION['count'] = 0;
-			} 
+			}
 			else {
 				$_SESSION['count']++;
 			}
-		
-		}	
-		}	
-		?> 
+
+		}
+		}
+		?>
 		<h1>Connexion</h1>
 		<form name="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-		<p><label for="login">utilisateur</label> <input type="text" title="Saisissez votre nom" name="login" /></p> 
-		<p><label for="password">Mot de passe</label> <input type="password" title="Saisissez le mot de passe" name="password" /></p> 
+		<p><label for="login">utilisateur</label> <input type="text" title="Saisissez votre nom" name="login" /></p>
+		<p><label for="password">Mot de passe</label> <input type="password" title="Saisissez le mot de passe" name="password" /></p>
 		<p><input type="submit" name="submit" value="Connexion" />
-		<input type="submit" name="nouvel utilisateur" value="Nouveau" formaction="inc/insertPassword.php" /></p>  
+		<input type="submit" name="nouvel utilisateur" value="Nouveau" formaction="inc/insertPassword.php" /></p>
 		</form>
 <?php
 		}
-	}	
+	}
 if (isset($_SESSION['authorized'])== true) {
 	echo "Bienvenue sur le site d'aministration";
 	?>
@@ -77,13 +77,14 @@ if (isset($_SESSION['authorized'])== true) {
 	<br><a href="administration/archer.php" target="_blank"> archer  <br></a>
 
 	<br><a href="administration/gestionConcours.php" target="_blank"> Gestion concours <br></a>
+	<br><a href="administration/recapInscription.php" target="_blank"> Gestion Inscription <br></a>
 
-	<?php	
-}	
+	<?php
+}
 ?>
 	<br>
 	<a href="inc/logout.php" class="btn btn-secondary">exit<i class="fas fa-angle-right"></i></a>
-	
+
 </body>
 </html>
 <?php
