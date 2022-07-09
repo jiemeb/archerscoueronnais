@@ -170,7 +170,7 @@ include("inc/prixCotisation.php");
   <label>Je soussigné<?php if ($_SESSION['civilite'] == 'Madame') echo 'e'; echo ' '.$_SESSION['nom']." ".$_SESSION['prenom'].'<br><br>'; if ($_SESSION['droitimageClub'] == 'oui') echo '&nbsp; Accepte'; else echo "&nbsp; N'accepte pas " ;?> que moi-même soit pris en photo ou vidéo dans le cadre d’activités sportives
     de l’ESC Tir à l’Arc de Couëron, ou lors des sorties en compétition organisées par celui-ci.<br>
 <?php if ($_SESSION['droitimagePress'] == 'oui') echo '&nbsp; Autorise'; else echo "&nbsp; N’autorise pas"; ?>  que l’ESC Tir à l’Arc de Couëron, la ville de Couëron et les quotidiens régionaux à utiliser ces images pour illustrer d’éventuels articles, bulletins, plaquettes, expositions, affiches ou diaporama le représentant.
-<br>&nbsp; Je déclare en outre n’intenter aucun recours, ni réclamations, aucune demande de édommagement envers la Ville de Couëron, ni envers l’ESC Tir à l’Arc de Couëron, ni envers les personnes qui exploiteraient ces images.
+<br>&nbsp; Je déclare en outre n’intenter aucun recours, ni réclamations, aucune demande de dédommagement envers la Ville de Couëron, ni envers l’ESC Tir à l’Arc de Couëron, ni envers les personnes qui exploiteraient ces images.
 <br>Fait à : . <br> Le: <br>Signature de l'archer :.........Signature du représentant légal <br><br><br><br>
 </label></div>
 <hr>

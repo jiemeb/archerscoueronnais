@@ -4,7 +4,7 @@
    unset($_SESSION["authorized"]);
    
    echo 'You have cleaned session';
-   header('Location:'.dirname(__FILE__).'validAuthorized.php');
+   header('location: ../validAuthorized.php');
   // echo("<meta http-equiv='refresh' content='1'>");
 
  

@@ -2,7 +2,7 @@
 session_start();
 //$error=chdir ('/');
 //getcwd()." ".$error .  "\n";
-include(dirname(__FILE__).'/../inc/connexion.php');
+include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
  ?>
 
@@ -16,20 +16,14 @@ if(isset($_SESSION['authorized']))
 {
 
 	 $sqlArcher = "SELECT   id_adherent, prenom, nom  from adherents order by dateNaissance desc ;" ;
-// on envoie la requête
-//$req = mysqli_query($connexion,$sql)
-//$reqArcher = mysqli_query($connexion,$sqlArcher) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-$reqArcher = mysqli_query($connexion,$sqlArcher) ;
 
-$arrayArcher = array () ;
-
-
+$reqArcher = $db->query($sqlArcher) ;
 
 ?>
 <form id='selectArcher' method='post'>
 <select name="archer" size="1">
 <?php
-while ($rowArcher = mysqli_fetch_assoc($reqArcher))
+while ($rowArcher = $reqArcher->fetch())
 {
 $archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
 echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
@@ -60,8 +54,15 @@ $elementsFixe =$elementsFixe.",".$element." ";
 
 $sql = "SELECT   ".$elementsFixe.$elements." from adherents where id_adherent = ".$archerSelected.";"  ;
 //var_dump ($sql);
-$req = mysqli_query($connexion,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-$data = mysqli_fetch_assoc($req);
+try {
+$data = $db->query($sql)->fetch();
+}
+catch (Exception $E)
+{
+	die('Erreur SQL !<br>'.$e.'<br>');
+
+}
+
 
  ?>
 
@@ -107,7 +108,7 @@ $i++;
 echo'		<div class="col-md">';
 echo'					<div class="mb-2"> ';
 echo "<label class='form-label'>".$element."</label>" ;
-echo "<input type='text' name=".$element." id='".$element."' class='form-control' value=".$data[$element]." >";
+echo "<input type='text' name=".$element." id='".$element."' class='form-control' value='".$data[$element]."' >";
 echo'					</div> ';
 echo'		</div> ';
 
@@ -130,20 +131,33 @@ foreach($arrayValue as $element)
 	if(isset($_POST[$element])&& !empty($_POST[$element]) )
 	{
 		if(!empty($elements))
-		{$elements=$elements.',' ;}
-		$elements=$elements." ".$element."='".$_POST[$element]."'";
+		{
+			$elements=$elements.',' ;
+		}
+		$elements=$elements." ".$element."= :".$element;
+		
+		$data[$element]=$_POST[$element];
+
 	}
 
  }
  	if(!empty($elements))
 	{
+	try {	
 	$sql = "update  adherents set ".$elements."  where id_adherent = ".$_POST['archerSelected']  ;
-   // echo $sql ;
-	$req = mysqli_query($connexion,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+    //echo $sql ;
+	//var_dump($data);
+	$req = $db->prepare($sql)->execute($data);
+	}
+	catch (Exception $E)
+	{
+		echo 'Erreur SQL !<br>'.$sql.'<br>';
+
+	}
 	}
 
 }
-mysqli_close($connexion);
+unset($d);
 }
 
 ?>

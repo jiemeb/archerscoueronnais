@@ -2,7 +2,7 @@
 session_start();
 //$error=chdir ('/');
 //getcwd()." ".$error .  "\n";
-include(dirname(__FILE__).'/../inc/connexion.php');
+include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
  ?>
 
@@ -19,26 +19,51 @@ if(isset($_SESSION['authorized']))
 // on envoie la requête
 //$req = mysqli_query($connexion,$sql)
 //$reqDossier = mysqli_query($connexion,$sqlDossier) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-$reqDossier = mysqli_query($connexion,$sqlDossier) ;
-
+try { 
+	$reqDossier = $db->query($sqlDossier);
+} catch (Exception $E) {
+	die('Erreur SQL !<br>'.$sql.'<br>');
+}
 
 ?>
 <form id='selectDossier' method='post'>
-<select name="Dossier" size="1">
+<label for="dossiers">Choisir dossier:</label>
+<select name="Dossier" id="dossiers" size="1">
 <?php
-while ($rowDossier = mysqli_fetch_assoc($reqDossier))
+echo '<option value="tous">tous</option>' ;
+while ($rowDossier = $reqDossier->fetch())
 {
-echo '<option value="'.$rowDossier['dossier'].'">'.$rowDossier['dossier'].'</option>' ;
-
+if (!empty ($rowDossier['dossier']))
+	{
+		$elementSelect= $rowDossier['dossier'];
+		echo '<option value="'.$elementSelect.'">'.$elementSelect.'</option>' ;
+	}
+else
+	echo '<option value="vide">absent</option>' ;
 }
 echo '</select>' ;
+?>
+<label for="categories">&nbsp Choisir categorie:</label>
+<select name="Categories" id="Categories" size="1">
+	<option value=-1 >tous</option>
+	<option value=0  >poussin</option>
+	<option value=1  >benjamin</option>
+	<option value=2  >minime</option>
+	<option value=3  >cadet</option>
+	<option value=4  >jeune</option>
+	<option value=5  >senior</option>
+<?php
+
+
 echo "<input type='submit' value='submit' form='selectDossier'>";
 echo '</form>';
 
 if(isset($_POST['Dossier']))
 {
 $dossierSelected=$_POST['Dossier'] ;
-
+$categorie=$_POST['Categories'];
+if ($categorie == -1)
+	$categorie = "%%" ;
 $elements = "";
 foreach($arrayValue as $element)
 {
@@ -54,78 +79,105 @@ $elementsFixe =$element." ";
 else
 $elementsFixe =$elementsFixe.",".$element." ";
 }
-if(empty($dossierSelected))
+if($dossierSelected == "tous")
 {
- $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents ;' ;
+ $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where categories like "'.$categorie.'";' ;
+ $sqlEmail = 'SELECT   email1 ,email2 from adherents where categories like "'.$categorie.'";' ;
 }
+else if($dossierSelected == "vide")
+{
+	$sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier IS NULL and categories like "'.$categorie.'";' ;
+	$sqlEmail = 'SELECT  email1 ,email2 from adherents where dossier IS NULL and categories like "'.$categorie.'";' ;
+  }
 else
 {
-  $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier = "'.$dossierSelected.'";' ;
+  $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'";' ;
+  $sqlEmail = 'SELECT   email1 ,email2 from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'";' ;
 }
+  //}
 //var_dump ($sql);
-$req = mysqli_query($connexion,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+try {
+$req = $db->query($sql) ;
+$reqEmail = $db->query($sqlEmail);
+}
+catch (Exception $E) {
+die('Erreur SQL !<br>'.$sql.'<br>');
+} 
 ?>
 <!--<input type='hidden' name='dossierSelected' value="<?php echo $dossierSelected; ?>">-->
-<input  name='dossierSelected' value="<?php echo $dossierSelected; ?>">
+<input  name='dossierSelected' value="<?php echo $_POST['Dossier']; ?>">
 
-
-<div class='container'>
-  <div class='row'>
-    <div class='col'>
-
-<!-- <form  method='post' id='formulaire'> -->
-
+<table  class= grasrouge>
+<thead>
+<tr>
 <?php
-while ($data = mysqli_fetch_assoc($req))
+// Entete de colonne
+foreach ($arrayValueFixe as $element)
 {
-
-$i=0;
-
+	echo '<th>' ;
+	echo "<label class='form-label'>".$element."</label>" ;
+	echo '</th>' ;
+}
+foreach($arrayValue as $element)
+{
+	echo '<th>' ;
+	echo "<label class='form-label'>".$element."</label>" ;
+	echo '</th>' ;
+}
+echo '</tr>' ;
+echo '</thead>' ;
+echo '<tbody>' ;
+// Dumpt DATA
+while ($data = $req->fetch())
+{
+	echo '<tr>' ;
  foreach($arrayValueFixe as $element)
  {
-	 if (!($i%6))
-	 {
-     echo "</div>";
-		   echo "<div class='row'>";
-	 }
 
- $i++;
-echo "<div class='col-md'>";
-echo "	<div class='mb-2'>";
-echo "<label class='form-label'>".$element."= </label>" ;
-echo  " ".$data[$element] ;
-echo "	</div> ";
-echo "</div> ";
+	echo '<td>' ;
+	echo "<label class='form-label'>".$data[$element]."</label>" ;
+	echo '</td>' ;
  }
 
 
-$i=0;
 foreach($arrayValue as $element)
 {
-	if (!($i%6))
+
+	echo '<td>' ;
+	echo "<label class='form-label'>".$data[$element]."</label>";
+	echo '</td>' ;
+
+}
+echo '</tr>' ;
+
+
+}
+echo '</tbody>' ;
+echo '</table>' ;
+
+echo "<p></p>" ;echo "<p><b><u>Adresse mail de votre selection</u></b></p>" ;echo "<p></p>" ;
+echo "<div>";
+$i = 0;
+while ($data = $reqEmail->fetch())
+{
+if(!empty($data['email1']))
 	{
-    echo "</div>";
-		echo "<div class='row'>";
-	}
+		echo $data['email1']."," ;
+	}	
 
+if(!empty($data['email2']))
+	{
+		echo $data['email2']."," ;
+	}		
 $i++;
-echo'		<div class="col-md">';
-echo'					<div class="mb-2"> ';
-echo "<label class='form-label'>".$element."</label>" ;
-echo "<input type='text' name=".$element." id='".$element."' class='form-control' value= ".$data[$element]." >";
-echo'					</div> ';
-echo'		</div> ';
-
 }
 echo "</div>" ;
-echo "<div class='row'>";
+echo "<p></p>" ;
+echo "<div> Nombre de résultat =".$i ;
 
 }
 }
-
-}
-
-mysqli_close($connexion);
+unset($db);
 
 
 ?>

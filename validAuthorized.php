@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("inc/connexion.php");
+include("inc/connexionPDO.php");
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +32,14 @@ include("inc/connexion.php");
 		$login = $_SESSION['login']	;
 
 		$query = sprintf("SELECT mot_passe,authorized FROM users WHERE id_user='%s' ;",$login);
-		$row = mysqli_fetch_assoc(mysqli_query($connexion, $query));
+/*		$recipesStatement = $db->prepare($query);
+		$recipesStatement->execute();
+		$row = $recipesStatement->fetchAll(); */
 
+// https://phpdelusions.net/pdo_examples/select		
+//		foreach($db->query($query) as $row)
+//		{ 
+$row = $db->query($query)->fetch() ;
 		if ($row && password_verify($_POST['password'], $row['mot_passe'])) {
 			if($row['authorized'] != "0")
 			{
@@ -57,6 +63,7 @@ include("inc/connexion.php");
 			}
 
 		}
+//		}
 		}
 		?>
 		<h1>Connexion</h1>
@@ -88,5 +95,5 @@ if (isset($_SESSION['authorized'])== true) {
 </body>
 </html>
 <?php
-mysqli_close($connexion);
+unset($db);
 ?>

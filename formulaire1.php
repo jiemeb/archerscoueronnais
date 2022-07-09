@@ -240,13 +240,13 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
           <div class="row mt-5 zoneVisibleEnfant">
             <div class="col-md-4">
               <div class="mb-2">
-                <label class="form-label">Prénom representant legal2</label>
+                <label class="form-label">Prénom representant legal2*</label>
                 <input type="text" name="prenomRep2" id="prenomRep2" class="form-control" required="required">
               </div>
             </div>
             <div class="col-md-4">
               <div class="mb-2">
-                <label class="form-label">Nom representant legal2</label>
+                <label class="form-label">Nom representant legal2*</label>
                 <input type="text" name="nomRep2" id="nomRep2" class="form-control"  maxlenght="20" required="required">
               </div>
             </div>

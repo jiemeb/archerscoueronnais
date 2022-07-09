@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include("inc/connexion.php");
+include("inc/connexionPDO.php");
 include("inc/prixCotisation.php");
 # Liste des questions avec leurs différentes réponses possibles
 include("inc/questionsCaptcha.php");
@@ -57,51 +57,50 @@ if( !in_array($reponse_utilisateur, $liste_questions[$id_question_posee]['repons
     <?php
     die();
 }
-$_SESSION['categories']=$_POST['categories'];
-$_SESSION['civilite']=$_POST['civilite'];
-$_SESSION['prenom'] = $_POST['prenom'];
-$_SESSION['nom'] = $_POST['nom'];
-$_SESSION['dateNaissance'] = $_POST['dateNaissance'];
-$_SESSION['nationnalite'] = $_POST['nationnalite'];
-$_SESSION['email1'] = $_POST['email1'];
-
-$_SESSION['email2'] = isset ($_POST['email2'])?$_POST['email2'] : "";
-
-$_SESSION['telephone1'] = $_POST['telephone1'];
-$_SESSION['telephone2'] = $_POST['telephone2'];
- $chaine = str_replace( "’", "’’",$_POST['adresse']);
-$_SESSION['adresse'] = $chaine;
-$_SESSION['cp'] = $_POST['cp'];
-$_SESSION['commune'] = $_POST['commune'];
-
-$_SESSION['nomRep1'] =isset ( $_POST['nomRep1'])?$_POST['nomRep1']: "";
-$_SESSION['prenomRep1'] =isset ( $_POST['prenomRep1'])?$_POST['prenomRep1']: "";
-$_SESSION['nomRep2'] = isset ($_POST['nomRep2'])?$_POST['nomRep2']: "";
-$_SESSION['prenomRep2'] =isset ( $_POST['prenomRep2'])?$_POST['prenomRep2']: "";
-
-$_SESSION['droitimageClub'] = $_POST['droitimageClub'];
-$_SESSION['droitimagePress'] = $_POST['droitimagePress'];
-$_SESSION['kit'] = $_POST['kit'];
-$_SESSION['lot'] = $_POST['lot'];
+$arrayValue= array('categories','civilite','prenom','nom','dateNaissance','nationnalite','email1','email2','telephone1','telephone2','adresse','cp','commune','nomRep1','prenomRep1','nomRep2','prenomRep2','droitimageClub','droitimagePress','kit','lot','prix');
 
 //Calcul cout inscription  plus kit
 
 print ("vous avez : <br>");
 $prix = 0;
 echo "<table>";
-if ($_SESSION['kit'] == 'oui') {echo("<tr><td>&ensp;Kit </td><td>".$kit." €</td></tr>");$prix += $kit ;}
-if ($_SESSION['lot'] == 'oui') {echo("<tr><td>&ensp;3 flèches supplémentaires </td><td>".$lot." €</td></tr>");$prix += $lot ;}
-echo("<tr><td>&ensp;Licence </td><td>".$license[$_SESSION['categories']]." €</td></tr></table>");$prix += $license[$_SESSION['categories']];print ("&emsp;Total = ".$prix." €<br>") ;
+if ($_POST['kit'] == 'oui') {echo("<tr><td>&ensp;Kit </td><td>".$kit." €</td></tr>");$prix += $kit ;}
+if ($_POST['lot'] == 'oui') {echo("<tr><td>&ensp;3 flèches supplémentaires </td><td>".$lot." €</td></tr>");$prix += $lot ;}
+echo("<tr><td>&ensp;Licence </td><td>".$license[$_POST['categories']]." €</td></tr></table>");$prix += $license[$_POST['categories']];print ("&emsp;Total = ".$prix." €<br>") ;
+
+
+$data = array ();
+foreach($arrayValue as $val )
+{
+	$_SESSION[$val] = isset ($_POST[$val])? $_POST[$val] : "";
+	$data[$val] = $_SESSION[$val] ; 
+	if (empty($elementsInsert))
+	{
+	$elementsInsert =$val." ";
+	$elementsInsertData =":".$val." ";
+	}
+	else
+	{
+	$elementsInsert =$elementsInsert.",".$val." ";
+	$elementsInsertData =$elementsInsertData.",:".$val." ";
+	}
+}
 
 $_SESSION['prix']=$prix;
+$data['prix'] = $prix ;
+
+
+
 
  // test si le nombre de poussins est attteint
 $listAttente = 1;
 if($_SESSION['categories'] == 0)
 {
 
-	$result = mysqli_query($connexion, "SELECT COUNT(*) AS `count` FROM `adherents` where categories = 0");
- $row = mysqli_fetch_array($result);
+//	$result = mysqli_query($connexion, "SELECT COUNT(*) AS `count` FROM `adherents` where categories = 0");
+	$row = $db->query( "SELECT COUNT(*) AS `count` FROM `adherents` where categories = 0")->fetch();
+
+ //$row = mysqli_fetch_array($result);
 
 				$rangPoussin= $row['count'] - $comptePoussins;
 					$listAttente = $rangPoussin + 1;
@@ -113,8 +112,9 @@ if($_SESSION['categories'] == 0)
  if($_SESSION['categories'] != 0 && $_SESSION['categories'] != 5 )
  {
 
- 	$result = mysqli_query($connexion, "SELECT COUNT(*) AS `count` FROM `adherents` where categories != 0 AND categories != 5");
-  $row = mysqli_fetch_array($result);
+ //	$result = mysqli_query($connexion, "SELECT COUNT(*) AS `count` FROM `adherents` where categories != 0 AND categories != 5");
+  $row= $db->query( "SELECT COUNT(*) AS `count` FROM `adherents` where categories != 0 AND categories != 5")->fetch() ;
+  //$row = mysqli_fetch_array($result);
 
  				$rangJeunes= $row['count'] - $compteJeunes;
  					$listAttente = $rangJeunes + 1;
@@ -124,25 +124,25 @@ if($_SESSION['categories'] == 0)
 //
 print ("<br>Veuillez editer, signer les dossiers suivant et nous les renvoyer au format papier ou électronique<br>");
 
-$sql = "INSERT INTO adherents (categories ,civilite ,nom ,prenom ,dateNaissance ,nationnalite , email1 ,email2 ,telephone1 ,telephone2 ,adresse ,cp ,commune ,nomRep1 ,prenomRep1 ,nomRep2,prenomRep2 ,droitimageClub ,droitimagePress ,kit ,lot  ,listAttente ,prix )
- VALUES ('".$_SESSION['categories']."' ,'".$_SESSION['civilite']."' ,'".$_SESSION['nom']."' ,
-	'".$_SESSION['prenom']."','".$_SESSION['dateNaissance']."' ,'".$_SESSION['nationnalite']."' ,
-	'".$_SESSION['email1']."' ,'".$_SESSION['email2']."' ,'".$_SESSION['telephone1']."' ,
-	 '".$_SESSION['telephone2']."' ,'".$_SESSION['adresse']."' ,'".$_SESSION['cp']."' ,
-	 '".$_SESSION['commune']."' ,'".$_SESSION['nomRep1']."' ,'".$_SESSION['prenomRep1']."' ,
-	 '".$_SESSION['nomRep2']."' ,'".$_SESSION['prenomRep2']."' , '".$_SESSION['droitimageClub']."' ,
-	 '".$_SESSION['droitimagePress']."' ,'".$_SESSION['kit']."' ,'".$_SESSION['lot']."' ,$listAttente ,".$_SESSION['prix']." )";
+$sql = "INSERT INTO adherents (".$elementsInsert." )
+ VALUES (".$elementsInsertData." )";
 
-if (mysqli_query($connexion, $sql)) {
-      echo "";
-} else {
+//$errror=@mysqli_query($connexion, $sql);
+//$errror=@mysqli_query($connexion, $sql);
+try 
+{
+	$db->prepare( $sql)->execute($data);	
+}
+
+ catch (Exception $e){
 			echo '<label class=grasrouge>Une erreur est intervenu lors de l\'enregistrement de votre inscription.<br>
 			 Veuillez me contacter <br>
 			&nbsp &nbsp par mail: archersdecoueron@gmail.com ou par téléphone au 0240432800.
 			<br></label>';
-      echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
+     // echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
 }
-mysqli_close($connexion);
+unset ($db) ;
+//mysqli_close($connexion);
 ?>
 
 <div class="col mb-5 mt-5">
