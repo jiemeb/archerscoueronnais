@@ -4,10 +4,7 @@ session_start();
 //getcwd()." ".$error .  "\n";
 include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
- ?>
 
-
-<?php
 $arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot","dossier" ,"certificat", "debutant"  ,"chequeKit"  ,"chequeCotisation" ) ;
 // Valeur a éditer
 $arrayValue= array();
@@ -19,7 +16,7 @@ if(isset($_SESSION['authorized']))
 // on envoie la requête
 //$req = mysqli_query($connexion,$sql)
 //$reqDossier = mysqli_query($connexion,$sqlDossier) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-try { 
+try {
 	$reqDossier = $db->query($sqlDossier);
 } catch (Exception $E) {
 	die('Erreur SQL !<br>'.$sql.'<br>');
@@ -42,7 +39,9 @@ else
 	echo '<option value="vide">absent</option>' ;
 }
 echo '</select>' ;
+// Categrorie
 ?>
+
 <label for="categories">&nbsp Choisir categorie:</label>
 <select name="Categories" id="Categories" size="1">
 	<option value=-1 >tous</option>
@@ -52,10 +51,37 @@ echo '</select>' ;
 	<option value=3  >cadet</option>
 	<option value=4  >jeune</option>
 	<option value=5  >senior</option>
+</select>
+
+ <!-- column filter -->
+<label for="column">Choisir colonne a filtrer:</label>
+<select name="column" id="column" size="1">
+
+<?php
+echo '<option value="vide">vide</option>' ;
+foreach ($arrayValueFixe as $column)
+{
+		echo '<option value="'.$column.'">'.$column.'</option>' ;
+}
+echo '</select>' ;
+echo '<input type="text" name="filterValue" >';
+
+// Sort
+?>
+<label for="sort">Choisir colonne a trier:</label>
+<select name="sort" id="sort" size="1">
+
 <?php
 
+foreach ($arrayValueFixe as $column)
+{
+		echo '<option value="'.$column.'">'.$column.'</option>' ;
+}
+echo '</select>' ;
+// submit
+echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
 
-echo "<input type='submit' value='submit' form='selectDossier'>";
+//echo "<input type='submit' value='submit' form='selectDossier'>";
 echo '</form>';
 
 if(isset($_POST['Dossier']))
@@ -73,26 +99,49 @@ $elements =$elements.",".$element." ";
 $elementsFixe = "";
 foreach($arrayValueFixe as $element)
 {
-
 if (empty($elementsFixe))
 $elementsFixe =$element." ";
 else
 $elementsFixe =$elementsFixe.",".$element." ";
 }
+
+$column=' ';
+
+if(isset ($_POST ['column']) and isset ($_POST['filterValue'] ))
+{
+  if ($_POST['column'] != 'vide')
+  {
+    $column = ' AND '.$_POST['column'].' like "%'.$_POST['filterValue'].'%" ';
+    //var_dump('valeur colonne '.$column);
+  }
+}
+
+
+if(isset ($_POST ['sort']) )
+{
+  if (!empty($_POST['sort']))
+  {
+    $column =$column.' ORDER BY '.$_POST['sort'].' ASC ';
+  //  var_dump('valeur colonne '.$column);
+  }
+}
+
+
+
 if($dossierSelected == "tous")
 {
- $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where categories like "'.$categorie.'";' ;
- $sqlEmail = 'SELECT   email1 ,email2 from adherents where categories like "'.$categorie.'";' ;
+ $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where categories like "'.$categorie.'"'.$column.';' ;
+ $sqlEmail = 'SELECT   email1 ,email2 from adherents where categories like "'.$categorie.'"'.$column.';' ;
 }
 else if($dossierSelected == "vide")
 {
-	$sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier IS NULL and categories like "'.$categorie.'";' ;
-	$sqlEmail = 'SELECT  email1 ,email2 from adherents where dossier IS NULL and categories like "'.$categorie.'";' ;
+	$sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier IS NULL and categories like "'.$categorie.'"'.$column.';' ;
+	$sqlEmail = 'SELECT  email1 ,email2 from adherents where dossier IS NULL and categories like "'.$categorie.'"'.$column.';' ;
   }
 else
 {
-  $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'";' ;
-  $sqlEmail = 'SELECT   email1 ,email2 from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'";' ;
+  $sql = "SELECT   ".$elementsFixe.$elements. 'from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'"'.$column.';' ;
+  $sqlEmail = 'SELECT   email1 ,email2 from adherents where dossier = "'.$dossierSelected.'" and categories like "'.$categorie.'"'.$column.';' ;
 }
   //}
 //var_dump ($sql);
@@ -102,7 +151,7 @@ $reqEmail = $db->query($sqlEmail);
 }
 catch (Exception $E) {
 die('Erreur SQL !<br>'.$sql.'<br>');
-} 
+}
 ?>
 <!--<input type='hidden' name='dossierSelected' value="<?php echo $dossierSelected; ?>">-->
 <input  name='dossierSelected' value="<?php echo $_POST['Dossier']; ?>">
@@ -163,12 +212,12 @@ while ($data = $reqEmail->fetch())
 if(!empty($data['email1']))
 	{
 		echo $data['email1']."," ;
-	}	
+	}
 
 if(!empty($data['email2']))
 	{
 		echo $data['email2']."," ;
-	}		
+	}
 $i++;
 }
 echo "</div>" ;
