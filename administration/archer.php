@@ -10,7 +10,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
 <?php
 $arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation");
+$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation", "groupe");
 
 if(isset($_SESSION['authorized']))
 {
@@ -135,7 +135,7 @@ foreach($arrayValue as $element)
 			$elements=$elements.',' ;
 		}
 		$elements=$elements." ".$element."= :".$element;
-		
+
 		$data[$element]=$_POST[$element];
 
 	}
@@ -143,7 +143,7 @@ foreach($arrayValue as $element)
  }
  	if(!empty($elements))
 	{
-	try {	
+	try {
 	$sql = "update  adherents set ".$elements."  where id_adherent = ".$_POST['archerSelected']  ;
     //echo $sql ;
 	//var_dump($data);
