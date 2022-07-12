@@ -64,8 +64,12 @@ foreach ($arrayValueFixe as $column)
 		echo '<option value="'.$column.'">'.$column.'</option>' ;
 }
 echo '</select>' ;
-echo '<input type="text" name="filterValue" >';
+?>
+<label for="Like">inverser </label>
+<input class="form-check-input" type="radio" name="notLike" class="checkbox" value='notLike' >
 
+<input type="text" name="filterValue" >
+<?php
 // Sort
 ?>
 <label for="sort">Choisir colonne a trier:</label>
@@ -111,6 +115,9 @@ if(isset ($_POST ['column']) and isset ($_POST['filterValue'] ))
 {
   if ($_POST['column'] != 'vide')
   {
+		if(isset ($_POST['notLike']))
+		$column = ' AND '.$_POST['column'].' not like "%'.$_POST['filterValue'].'%" ';
+		else
     $column = ' AND '.$_POST['column'].' like "%'.$_POST['filterValue'].'%" ';
     //var_dump('valeur colonne '.$column);
   }
@@ -157,16 +164,28 @@ die('Erreur SQL !<br>'.$sql.'<br>');
 
 <!--<input type='hidden' name='dossierSelected' value="<?php echo $dossierSelected; ?>">-->
 <input  name='dossierSelected' value="<?php echo $_POST['Dossier']; ?>">
+<input  name='Categories' value="<?php echo $_POST['Categories']; ?>">
+<input  name='colonne' value="<?php echo $_POST['column']; ?>">
+<input  name='filterValue' value="<?php echo $_POST['filterValue']; ?>">
+<p></p>
 
 <table >
 <style>
       table,
       th,
       td {
-        padding: 10px;
+				text-align: center;
+        padding: 4px;
         border: 1px solid black;
         border-collapse: collapse;
       }
+			tr:nth-child(even) {
+    background-color: #eee;
+}
+th {
+background-color: #eee;
+}
+
     </style>
 <thead>
 <tr>
