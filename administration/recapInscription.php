@@ -153,10 +153,21 @@ catch (Exception $E) {
 die('Erreur SQL !<br>'.$sql.'<br>');
 }
 ?>
+<!-- resultat -->
+
 <!--<input type='hidden' name='dossierSelected' value="<?php echo $dossierSelected; ?>">-->
 <input  name='dossierSelected' value="<?php echo $_POST['Dossier']; ?>">
 
-<table  class= grasrouge>
+<table >
+<style>
+      table,
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
 <thead>
 <tr>
 <?php
