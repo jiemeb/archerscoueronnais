@@ -57,7 +57,7 @@ if( !in_array($reponse_utilisateur, $liste_questions[$id_question_posee]['repons
     <?php
     die();
 }
-$arrayValue= array('categories','civilite','prenom','nom','dateNaissance','nationnalite','email1','email2','telephone1','telephone2','adresse','cp','commune','nomRep1','prenomRep1','nomRep2','prenomRep2','droitimageClub','droitimagePress','kit','lot','prix');
+$arrayValue= array('categories','civilite','prenom','nom','dateNaissance','nationnalite','email1','email2','telephone1','telephone2','adresse','cp','commune','nomRep1','prenomRep1','nomRep2','prenomRep2','droitimageClub','droitimagePress','kit','lot','prix','listAttente');
 
 //Calcul cout inscription  plus kit
 
@@ -69,25 +69,6 @@ if ($_POST['lot'] == 'oui') {echo("<tr><td>&ensp;3 flèches supplémentaires </t
 echo("<tr><td>&ensp;Licence </td><td>".$license[$_POST['categories']]." €</td></tr></table>");$prix += $license[$_POST['categories']];print ("&emsp;Total = ".$prix." €<br>") ;
 
 
-$data = array ();
-foreach($arrayValue as $val )
-{
-	$_SESSION[$val] = isset ($_POST[$val])? $_POST[$val] : "";
-	$data[$val] = $_SESSION[$val] ; 
-	if (empty($elementsInsert))
-	{
-	$elementsInsert =$val." ";
-	$elementsInsertData =":".$val." ";
-	}
-	else
-	{
-	$elementsInsert =$elementsInsert.",".$val." ";
-	$elementsInsertData =$elementsInsertData.",:".$val." ";
-	}
-}
-
-$_SESSION['prix']=$prix;
-$data['prix'] = $prix ;
 
 
 
@@ -121,6 +102,31 @@ if($_SESSION['categories'] == 0)
  				 if ($rangJeunes >= 0 )
 				 	print("<span class=grasrouge>vous etes en liste attente ".$listAttente."</span>");
   }
+
+
+
+	$data = array ();
+	foreach($arrayValue as $val )
+	{
+		$_SESSION[$val] = isset ($_POST[$val])? $_POST[$val] : "";
+		$data[$val] = $_SESSION[$val] ;
+		if (empty($elementsInsert))
+		{
+		$elementsInsert =$val." ";
+		$elementsInsertData =":".$val." ";
+		}
+		else
+		{
+		$elementsInsert =$elementsInsert.",".$val." ";
+		$elementsInsertData =$elementsInsertData.",:".$val." ";
+		}
+	}
+
+	$_SESSION['prix']=$prix;
+	$data['prix'] = $prix ;
+	$data['listAttente'] = $listAttente ;
+
+
 //
 print ("<br>Veuillez editer, signer les dossiers suivant et nous les renvoyer au format papier ou électronique<br>");
 
@@ -129,9 +135,9 @@ $sql = "INSERT INTO adherents (".$elementsInsert." )
 
 //$errror=@mysqli_query($connexion, $sql);
 //$errror=@mysqli_query($connexion, $sql);
-try 
+try
 {
-	$db->prepare( $sql)->execute($data);	
+	$db->prepare( $sql)->execute($data);
 }
 
  catch (Exception $e){
@@ -139,7 +145,7 @@ try
 			 Veuillez me contacter <br>
 			&nbsp &nbsp par mail: archersdecoueron@gmail.com ou par téléphone au 0240432800.
 			<br></label>';
-     // echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
+  //    echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
 }
 unset ($db) ;
 //mysqli_close($connexion);
