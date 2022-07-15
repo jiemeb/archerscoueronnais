@@ -5,7 +5,7 @@ session_start();
 include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
 
-$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot","dossier" ,"certificat", "debutant"  ,"chequeKit"  ,"chequeCotisation","groupe" ) ;
+$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance","email1","telephone1","dossier","kit","lot","remarque" ,"certificat", "debutant"  ,"chequeKit"  ,"chequeCotisation","groupe" ) ;
 // Valeur a éditer
 $arrayValue= array();
 
