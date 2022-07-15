@@ -8,9 +8,9 @@ include(dirname(__FILE__).'/../inc/entete.php');
 
 
 <?php
-$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
+$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation", "groupe","remarque");
+$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit" ,"chequeCotisation", "groupe","remarque");
 
 if(isset($_SESSION['authorized']))
 {
