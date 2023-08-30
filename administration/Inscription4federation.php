@@ -85,7 +85,6 @@ echo '</select>' ;
 // submit
 echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
 
-//echo "<input type='submit' value='submit' form='selectDossier'>";
 echo '</form>';
 
 if(isset($_POST['Dossier']))
@@ -94,11 +93,7 @@ $dossierSelected=$_POST['Dossier'] ;
 $categorie=$_POST['Categories'];
 if ($categorie == -1)
 	$categorie = "%%" ;
-$elements = "";
-foreach($arrayValue as $element)
-{
-$elements =$elements.",".$element." ";
-}
+
 
 $elementsFixe = "";
 foreach($arrayValueFixe as $element)
@@ -107,6 +102,12 @@ if (empty($elementsFixe))
 $elementsFixe =$element." ";
 else
 $elementsFixe =$elementsFixe.",".$element." ";
+}
+
+$elements = "";
+foreach($arrayValue as $element)
+{
+$elements =$elements.",".$element." ";
 }
 
 $column=' ';
@@ -185,8 +186,7 @@ die('Erreur SQL !<br>'.$sql.'<br>');
 th {
 background-color: #eee;
 }
-
-    </style>
+</style>
 <thead>
 <tr>
 <?php

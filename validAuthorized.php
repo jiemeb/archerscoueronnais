@@ -1,13 +1,15 @@
 <?php
 session_start();
 include("inc/connexionPDO.php");
+include(dirname(__FILE__).'/inc/entete.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Administration Archers de Coueron</title>
+<div></div>
+<title >Administration Archers de Coueron</title>
 <style>
 </style>
 </head>
@@ -36,9 +38,9 @@ include("inc/connexionPDO.php");
 		$recipesStatement->execute();
 		$row = $recipesStatement->fetchAll(); */
 
-// https://phpdelusions.net/pdo_examples/select		
+// https://phpdelusions.net/pdo_examples/select
 //		foreach($db->query($query) as $row)
-//		{ 
+//		{
 $row = $db->query($query)->fetch() ;
 		if ($row && password_verify($_POST['password'], $row['mot_passe'])) {
 			if($row['authorized'] != "0")
@@ -77,15 +79,16 @@ $row = $db->query($query)->fetch() ;
 		}
 	}
 if (isset($_SESSION['authorized'])== true) {
-	echo "Bienvenue sur le site d'aministration";
+	echo "<h1>Bienvenue sur le site d'aministration</h1>";
 	?>
 
 	<br><a href="administration/lecture_all.php" target="_blank"> Lecture total <br></a>
 	<br><a href="administration/archer.php" target="_blank"> archer  <br></a>
-
 	<br><a href="administration/gestionConcours.php" target="_blank"> Gestion concours <br></a>
 	<br><a href="administration/recapInscription.php" target="_blank"> Gestion Inscription <br></a>
-
+	<br><a href="administration/lectureSelective.php" target="_blank"> Lecture selective <br></a>
+	<br><a href="administration/Inscription4federation.php" target="_blank"> vueFédérale <br></a>
+	<br><a href="administration/Inscription4federationOld.php" target="_blank"> vueAnnéePassée <br></a>
 	<?php
 }
 ?>

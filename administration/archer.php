@@ -10,7 +10,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
 <?php
 $arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation", "groupe");
+$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit"  ,"chequeCotisation","licence" , "groupe");
 
 if(isset($_SESSION['authorized']))
 {
@@ -60,7 +60,6 @@ $data = $db->query($sql)->fetch();
 catch (Exception $E)
 {
 	die('Erreur SQL !<br>'.$e.'<br>');
-
 }
 
 
@@ -73,10 +72,6 @@ catch (Exception $E)
 <input type='hidden' name='archerSelected' value="<?php echo $archerSelected; ?>">
 <?php
 $i=0;
-
-
-
-
 
  foreach($arrayValueFixe as $element)
  {
@@ -124,7 +119,7 @@ echo "</div>" ;
 if (isset ( $_POST['archerSelected']))
 {
 	$elements = "";
-	$i="";
+
 foreach($arrayValue as $element)
  {
 
@@ -152,12 +147,11 @@ foreach($arrayValue as $element)
 	catch (Exception $E)
 	{
 		echo 'Erreur SQL !<br>'.$sql.'<br>';
-
 	}
 	}
 
 }
-unset($d);
+unset($db);
 }
 
 ?>

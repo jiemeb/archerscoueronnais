@@ -25,7 +25,7 @@ session_start();
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2022-2023</h2>
+				<h2>Inscriptions saison 2023-2024</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
@@ -47,38 +47,34 @@ session_start();
 					Cher.e.s lidencié.e.s et familles,<br><br>
 				</p>
 				<p>
-					Le Bureau a décidé de continuer les modalités d'inscriptions pour cette nouvelle saison. Les inscriptions se font en ligne via le formulaire de la page suivante. Ce document sera à vérifier, compléter et signer. Il devra être remis accompagné du paiement et des pièces suivantes :
+				Les inscriptions pour la prochaine saison sont ouvertes.. <br>
+				Pour vous inscrire :<br><br>
+
+					<b>Etape 1 : </b> Complétez le formulaire en ligne en cliquant sur le bouton suivant en bas de page. <b>Imprimez, vérifiez et signez ce dossier.</b><br><br>
+					<b>Etape 2 : Déposez ce dossier aux dates des permanences</b> accompagné du paiement et des pièces suivantes :<br>
 				</p>
-
-
 				<p>
 					<b>- la photocopie de la carte d'identité</b><br>
-					<b>- le certificat médical Ou questionnaire santé pour les enfants</b><br>
+					<b>- le certificat médical* Ou questionnaire santé pour les enfants</b><br>
 					<b>- le dossier créé en ligne imprimé et signé </b><br>
-					<b>- le paiement par chèque avec le nom du licencié au dos</b><br>
+					<b>- le paiement par chèque avec le nom du licencié au dos</b><br><br>
+				</p>
+				<p >
+				<p style="color:#FF0000";>	L'inscription sera complète et prise en compte qu'à réception du dossier COMPLET lors des permanences. <br><br>
 				</p>
 				<p>
-					L'inscription sera complète et prise en compte qu'à réception du dossier COMPLET. <br><br>
 
-					Pour les renouvellements de licence, réinscriptions en ligne obligatoire <u>du 12 juin au 25 juin 2022.</u>
+					Pour les renouvellements de licence, réinscriptions en ligne obligatoire <u>du 15 mai au 31 mai 2023.</u>
 
-					<br>Pour les nouvelles inscriptions, elles auront lieu entre le 25 Juin et le 23 juillet 2022. Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.
-<br><br><b>Le dossier COMPLET est à déposer : <br>
-					<u>- le 22 juin de 18h30 à 20h30  permanence à la salle René Gaudin</u>
-					<br><b>OU</b></br>
-					<u>- du 12 Juin au 23 juillet  2022 dans la boite aux lettres de Frédérique MABILAIS</u>, 89 quater rue Arsène Leloup 44220 COUËRON<br>
+					<br>Pour les nouvelles inscriptions, elles auront lieu entre le 5 Juin et le 22 juin 2023. Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.
 <br><br>
-<b>Chaque dossier devra être COMPLET pour que la réinscription soit validée. </>
+					<br><br>
+
 <br><br><br><br>
 
-					*Certificat médical<br>
 				</p>
-
-
-
-				Pour les jeunes et les adultes, demandez par défaut une licence «Pratique en compétition » ceci permettra de participer à des manifestations avec d'autres club à défaut de faire de la compétition.
-
-				<br>Vous possédiez une licence « Pratique en club » et vous souhaitez obtenir une licence « Pratique en compétition » : vous devez présenter un certificat médical de non contre-indication à la pratique du tir à l’arc en compétition, datant de moins d’1 an.
+				*Certificat médical. Nous vous demandons de privilégier la précision de non contre-indication à la pratique du tir à l’arc en compétition.<be>
+Cette mention permet de participer à des manifestations avec d'autres clubs et de faire de la compétition.
 
 
 			<br>	<b>Pour toutes questions, contactez nous à l'adresse suivante : archersdecoueron@gmail.com </b><br>

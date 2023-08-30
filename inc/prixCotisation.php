@@ -1,12 +1,13 @@
 <?php
-    $license = array(0 => 67,
-                1 => 67,
-                2 => 70,
-                3 => 70,
-                4 => 80,
-                5 => 95 );
-$kit = 44 ;
+    $license = array(0 => 75,
+                1 => 75,
+                2 => 75,
+                3 => 85,
+                4 => 85,
+                5 => 100 );
+$kit = 47 ;
 $lot = 10 ;
 $comptePoussins=6 ;
 $compteJeunes=20 ;
+$inscription=1 ;
 ?>

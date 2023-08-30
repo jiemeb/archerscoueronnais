@@ -3,6 +3,7 @@ session_start();
 
 
 include("inc/questionsCaptcha.php");
+include("inc/prixCotisation.php");
 # Activation des sessions (pour que PHP charge la session de l'utilisateur, via le cookie PHPSESSID)
 # à placer impérativement avant tout affichage, car cette fonction a besoin d'envoyer des headers HTTP
 
@@ -35,7 +36,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
     function getAge() {
       var dateNaissance = new Date(document.getElementById("formulaire").elements["dateNaissance"].value);
       //     var diff = Date.now() - dateNaissance.getTime();
-      var date_fin = new Date('2023-12-31');
+      var date_fin = new Date('2024-12-31');
 
       var diff = date_fin - dateNaissance.getTime();
 
@@ -112,7 +113,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2022-2023</h2>
+				<h2>Inscriptions saison 2023-2024</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
@@ -166,7 +167,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Nationalité*</label>
-                <input type="text" name="nationnalite" class="form-control" required="required">
+                <input type="text" name="nationalite" class="form-control" required="required">
               </div>
             </div>
           </div>
@@ -266,12 +267,12 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
               <div class="mb-2">
                 <label class="form-label">Catégories de l'archer*</label>
                 <select class="form-select" name="categories" id="categories">
-                  <option value=0>Poussins - Années de naissance : Apres 2012 - Tarif 67 euros</option>
-                  <option value=1>Benjamins - Années de naissance : 2012 et 2011 - Tarif 67 euros</option>
-                  <option value=2>Minimes - Années de naissance : 2010 et 2009 - Tarif 70 euros</option>
-                  <option value=3>Cadets - Années de naissance : 2008, 2007 et 2006 - Tarif 70 euros</option>
-                  <option value=4>Jeunes - Années de naissance : 2005, 2004 et 2003 - Tarif 80 euros</option>
-                  <option value=5>Séniors - Années de naissance : avant 2003 - Tarif 95 euros</option>
+                  <option value=0>Poussins - Années de naissance : Apres 2013 - Tarif 75 euros</option>
+                  <option value=1>Benjamins - Années de naissance : 2013 et 2012 - Tarif 75 euros</option>
+                  <option value=2>Minimes - Années de naissance : 2011 et 2010 - Tarif 75 euros</option>
+                  <option value=3>Cadets - Années de naissance : 2009, 2008 et 2007 - Tarif 85 euros</option>
+                  <option value=4>Jeunes - Années de naissance : 2006, 2005 et 2004 - Tarif 85 euros</option>
+                  <option value=5>Séniors - Années de naissance : avant 2004 - Tarif 100 euros</option>
                 </select>
               </div>
             </div>
@@ -329,7 +330,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
               Contenu du kit : 6 flèches + Un carquois + Une palette à cale (DECUT) + Une protection de bras + Une dragonne poignée ou doigt<br>
 
               <br>
-              Je souhaite un kit tir à l'arc d'un montant de 44 €<br>
+              Je souhaite un kit tir à l'arc d'un montant de 47 €<br>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="kit" value="oui" required>
                 <label class="form-check-label">

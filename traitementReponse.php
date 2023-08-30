@@ -33,7 +33,7 @@ include("inc/questionsCaptcha.php");
 			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
 			<div class="col-sm-8">
 				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2022-2023</h2>
+				<h2>Inscriptions saison 2023-2024</h2>
 			</div>
 			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
 		</div>
@@ -57,7 +57,27 @@ if( !in_array($reponse_utilisateur, $liste_questions[$id_question_posee]['repons
     <?php
     die();
 }
-$arrayValue= array('categories','civilite','prenom','nom','dateNaissance','nationnalite','email1','email2','telephone1','telephone2','adresse','cp','commune','nomRep1','prenomRep1','nomRep2','prenomRep2','droitimageClub','droitimagePress','kit','lot','prix','listAttente');
+
+$arrayValue= array('categories','civilite','prenom','nom','dateNaissance','nationalite','email1','email2','telephone1','telephone2','adresse','cp','commune','nomRep1','prenomRep1','nomRep2','prenomRep2','droitimageClub','droitimagePress','kit','lot','prix','listAttente');
+
+// test si réinscription
+
+$sqlNom="SELECT COUNT(*) AS 'count' FROM `adherentsOld` where nom =  '".$_POST['nom']."' ";
+
+$row= $db->query( $sqlNom)->fetch() ;
+
+	echo " valeur ".$row['count']. " inscriptions ".$inscription ;
+
+if ($row['count'] == 0 AND $inscription == 0)
+{
+//	echo " valeur ".$row['count']. " inscriptions ".$inscription ;
+	echo "<h2> ERREUR </h2>".$_POST['prenom']." ".$_POST['nom']." n'est pas un(e) archer(e) du club.<div> Vous devez attendre que le site soit ouvert aux inscriptions.</div><h3> Traitement annulé</h3>";
+    ?>
+    <a href="formulaire1.php"><img title="retour au début" style="border: 0px solid ;" alt= "bouton retour"src="images/bt_retour.gif"></a>
+    <?php
+    die();
+
+}
 
 //Calcul cout inscription  plus kit
 
@@ -67,7 +87,6 @@ echo "<table>";
 if ($_POST['kit'] == 'oui') {echo("<tr><td>&ensp;Kit </td><td>".$kit." €</td></tr>");$prix += $kit ;}
 if ($_POST['lot'] == 'oui') {echo("<tr><td>&ensp;3 flèches supplémentaires </td><td>".$lot." €</td></tr>");$prix += $lot ;}
 echo("<tr><td>&ensp;Licence </td><td>".$license[$_POST['categories']]." €</td></tr></table>");$prix += $license[$_POST['categories']];print ("&emsp;Total = ".$prix." €<br>") ;
-
 
 
 
@@ -133,8 +152,6 @@ print ("<br>Veuillez editer, signer les dossiers suivant et nous les renvoyer au
 $sql = "INSERT INTO adherents (".$elementsInsert." )
  VALUES (".$elementsInsertData." )";
 
-//$errror=@mysqli_query($connexion, $sql);
-//$errror=@mysqli_query($connexion, $sql);
 try
 {
 	$db->prepare( $sql)->execute($data);
@@ -145,10 +162,10 @@ try
 			 Veuillez me contacter <br>
 			&nbsp &nbsp par mail: archersdecoueron@gmail.com ou par téléphone au 0240432800.
 			<br></label>';
-  //    echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
+      echo "Erreur : " . $sql . "<br>" . mysqli_error($connexion);
 }
 unset ($db) ;
-//mysqli_close($connexion);
+
 ?>
 
 <div class="col mb-5 mt-5">

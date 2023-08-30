@@ -31,7 +31,7 @@ include("inc/prixCotisation.php");
 	<div class="myHeader1"> </div>
 	<div class="myHeader2" >
 		<h1>Archers de Coüeron</h1>
-		<h2>Inscriptions saison 2022-2023</h2>
+		<h2>Inscriptions saison 2023-2024</h2>
 	</div>
 	<div class="myHeader3"> </div>
 </div>
