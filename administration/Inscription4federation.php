@@ -83,7 +83,8 @@ foreach ($arrayValueFixe as $column)
 }
 echo '</select>' ;
 // submit
-echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
+//echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
+echo "<input type='submit' class='green' name='validation' value='validation' form='selectDossier'>&nbsp";
 
 echo '</form>';
 

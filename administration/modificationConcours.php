@@ -8,7 +8,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
  ?>
 
 <?php
-$arrayValueFixe  = array ( "concoursName","ConcoursDate" ) ;
+$arrayValueFixe  = array ( "concoursName","ConcoursDate" ,"prixEnfant","prixAdulte") ;
 // Valeur a éditer
 $arrayValue= array("referent", "note");
 

@@ -27,7 +27,7 @@ h1 {
 }
 
 h2 {
-  margin: 0
+  margin: 0;
   font-size: 24px;
   text-align: center;
 }
@@ -213,4 +213,8 @@ background-image: url('images/bt_suivant.gif') no-repeat;
 .td_impair{
   background-color: #FED0A4;
 }
+.button { background-color:#fcfcfc;}
+.green { 	background: #0e6612; }
+.red { 	background: #a04f0c; }
+.grasrouge{font-weight:bold;color:red;}
 	

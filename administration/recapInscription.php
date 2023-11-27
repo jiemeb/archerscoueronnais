@@ -22,11 +22,12 @@ try {
 	die('Erreur SQL !<br>'.$sql.'<br>');
 }
 
-?>
-<form id='selectDossier' method='post'>
-<label for="dossiers">Choisir dossier:</label>
-<select name="Dossier" id="dossiers" size="1">
-<?php
+
+echo "<div horizontal layout >";
+echo "<form id='selectDossier' method='post'>";
+echo "<label for='dossiers'>Choisir dossier:</label>";
+echo "<select name='Dossier' id='dossiers' size='1'>";
+
 echo '<option value="tous">tous</option>' ;
 while ($rowDossier = $reqDossier->fetch())
 {
@@ -83,9 +84,9 @@ foreach ($arrayValueFixe as $column)
 }
 echo '</select>' ;
 // submit
-echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
+//echo '<input class="btn btn-success" type="submit" title="Validation filtre">';
+echo "<input type='submit' class='green' name='validation' value='validation' form='selectDossier'>&nbsp";
 
-//echo "<input type='submit' value='submit' form='selectDossier'>";
 echo '</form>';
 
 if(isset($_POST['Dossier']))
@@ -167,7 +168,8 @@ die('Erreur SQL !<br>'.$sql.'<br>');
 <input  name='Categories' value="<?php echo $_POST['Categories']; ?>">
 <input  name='colonne' value="<?php echo $_POST['column']; ?>">
 <input  name='filterValue' value="<?php echo $_POST['filterValue']; ?>">
-<p></p>
+</div>
+<p> </p>
 
 <table >
 <style>

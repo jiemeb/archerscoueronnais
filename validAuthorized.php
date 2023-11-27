@@ -84,6 +84,8 @@ if (isset($_SESSION['authorized'])== true) {
 
 	<br><a href="administration/lecture_all.php" target="_blank"> Lecture total <br></a>
 	<br><a href="administration/archer.php" target="_blank"> archer  <br></a>
+	<br><a href="administration/archerInsFederation.php" target="_blank"> archer inscription Fédération  <br></a>
+	<br><a href="administration/archerSimplifie.php" target="_blank"> archer Simplifié <br></a>
 	<br><a href="administration/gestionConcours.php" target="_blank"> Gestion concours <br></a>
 	<br><a href="administration/recapInscription.php" target="_blank"> Gestion Inscription <br></a>
 	<br><a href="administration/lectureSelective.php" target="_blank"> Lecture selective <br></a>

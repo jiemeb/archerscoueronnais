@@ -1,4 +1,8 @@
-
+<?php
+/*
+$error=chdir ('');
+getcwd()." ".$error .  "\n";*/
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 	<title>Archers de Coueron</title>
@@ -12,7 +16,7 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<link type="text/css" rel="stylesheet" href="css/my.css"></head>
+	<link type="text/css" rel="stylesheet" href="/css/style.css"></head>
 
 <body scroll=yes>
   <div class="container">
@@ -25,5 +29,6 @@
       <div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
     </div>
   </div>
-
+  <div > &nbsp</div>
+    
   <?php

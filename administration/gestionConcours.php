@@ -4,21 +4,38 @@ session_start();
 //getcwd()." ".$error .  "\n";
 include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
+
  ?>
 
-
 <?php
-$arrayValueFixe  = array ( "prenom","nom", "licence", "categories", "arc"  ) ;
+$arrayValueFixe  = array ( "prenom","nom", "licence", "categories", "arcType"  ) ;
 // Valeur a éditer
 $arrayValue= array("blason", "depart", "concoursPrix","etat");
 
 if(isset($_SESSION['authorized']))
 {
 
+if(isset($_POST['selectConcour']))
+{
+$_SESSION['concoursSelected'] = $_POST['concours'] ;
+}
+
+if (isset ($_POST['deleteConcours']) )
+{
+	unset ($_SESSION['concoursSelected']);
+	$id = array ($_POST['concours']) ;
+	$sqlDelete="delete from concoursArchers where id_concours=?";
+	$db->prepare($sqlDelete)->execute($id);
+	$sqlDelete="delete from concours where id_concours =?";
+	$db->prepare($sqlDelete)->execute($id);
+}
+
+// remplisage  concours  
 $sqlConcours = "SELECT   id_concours, concoursName  from concours order by concoursDate desc ;" ;
 // on envoie la requête
 $reqConcours = $db->query($sqlConcours) ;
 // menu déroulant Concours
+echo "<span class='form-label' >" ;
 echo "<form id='selectConcours' method='post'>";
 echo "<select name='concours' size='1'>";
 
@@ -27,10 +44,12 @@ while ($rowConcours = $reqConcours->fetch())
 echo "<option value=".$rowConcours['id_concours'].">".$rowConcours['concoursName'].'</option>' ;
 }
 echo '</select>&nbsp' ;
-echo "<input type='submit' name='selectConcour' value='Select concours' form='selectConcours'>&nbsp";
+echo "<input type='submit' name='selectConcour' value='Select concours' size='1' form='selectConcours'>&nbsp";
 echo "<input type='submit' name='deleteConcours' value='Delete concours' form='selectConcours'>&nbsp";
 //echo "<a href='creationConcours.php' input type='button'  value='Creation concours' form='selectConcours'>";
-echo "<a href='creationConcours.php' class='btn btn-secondary'>Creation concours</i></a>";
+echo '<input type="button" value="Creation concours" form="selectConcours" onClick="window.location.href=\'creationConcours.php\'">&nbsp';
+echo '<input type="button" value="Modification concours" form="selectConcours" onClick="window.location.href=\'modificationConcours.php\'">&nbsp';
+
 echo '</form>';
 
 
@@ -48,21 +67,7 @@ echo '</select> &nbsp' ;
 echo "<input type='submit' name='ajoutArcher' value='ajout Archer' form='selectArcher'>&nbsp";
 echo "<input type='submit' name='suppressionArcher' value='Suppression Archer' form='selectArcher'>&nbsp";
 echo '</form>';
-
-if(isset($_POST['selectConcour']))
-{
-$_SESSION['concoursSelected'] = $_POST['concours'] ;
-}
-
-if (isset ($_POST['deleteConcours']) )
-{
-	//unset ($_SESSION['concoursSelected']);
-	$id = array ($_POST['concours']) ;
-	$sqlDelete="delete from concoursArchers where id_concours=?";
-	$db->prepare($sqlDelete)->execute($id);
-	$sqlDelete="delete from concours where id_concours =?";
-	$db->prepare($sqlDelete)->execute($id);
-}
+echo "</span>" ;
 
 if(isset($_SESSION['concoursSelected']))
 {
@@ -98,22 +103,17 @@ if (isset($_POST['validation']))
 // Get nb enregistrement
 $sql = "select id_adherent from concoursArchers  where  id_concours = ".$_SESSION['concoursSelected']." ORDER BY id_adherent";    
 $req = $db->query($sql);
-
 try {
-
 	$id_adherents=$req->fetchAll();
 	}
 	catch (Exception $E)
 	{
 		echo 'Erreur SQL !<br>'.$sql.'<br>';
 	}
-
-
 // Foreach get variable index i
 $i=0 ;
 foreach ($id_adherents as $concoursAdherant)
 {
-	
 	$elements = "";
 
 	foreach($arrayValue as $element)
@@ -150,32 +150,50 @@ foreach ($id_adherents as $concoursAdherant)
 		}
 		}// Update base
 		$i++ ;
-
 }
 }
+//-----------------------------------------------------------------------------//
+// Display frame
+//-----------------------------------------------------------------------------//
+// Get rule of 3 concours free
 
+
+$sqlFreeArchers= "select c.id_adherent, sum(CASE when c.etat = 'gratuit' THEN 1 Else 0 END ) AS nb_concours from concoursArchers  as c,adherents as a where  c.id_adherent = a.id_adherent AND (a.categories < 5 OR (categories = 5 AND debutant = 'OUI')) GROUP BY c.id_adherent ORDER BY c.id_adherent" ;
+$reqFreeArchers = $db->query($sqlFreeArchers) ;
+$freeArchers = $reqFreeArchers->fetchall();
+
+//var_dump ($freeArchers) ;
+//- populate concours
 echo "<div></div>";
 if(isset($_SESSION['concoursSelected']))
 {
 // Display Concours information
 
-$sqlConcour = "SELECT  concoursName, concoursDate,  prixEnfant, prixAdulte, referent  from concours where id_concours = ".$_SESSION['concoursSelected'];
+$prixConcoursAdulte = "";
+$prixConcoursEnfant = "";
 
+$sqlConcour = "SELECT  concoursName, concoursDate,  prixEnfant, prixAdulte, referent, note  from concours where id_concours = ".$_SESSION['concoursSelected'];
 $reqConcour = $db->query($sqlConcour) ;
+
 
 while($data1 = $reqConcour->fetch()) 
 {
+
 echo "<div>";
 echo "<table><tr><td>";
-echo "<label class='form-label'> <b>concours </b> ".$data1['concoursName']."</label> &nbsp" ;
+echo "<label class='form-label'> <b>concours &nbsp</b></label> <label class='form-label'> ".$data1['concoursName']."</label>&nbsp" ;
 echo "</td><td>";
-echo "<label class='form-label'> <b>Date</b> ".$data1['concoursDate']."</label> &nbsp" ;
+echo "<label class='form-label'> <b>Date &nbsp</b> </label><label class='form-label'>".$data1['concoursDate']."</label> &nbsp" ;
 echo "</td><td>";
-echo "<label class='form-label'> <b>Prix Enfants</b> ".$data1['prixEnfant']."</label> &nbsp" ;
+$prixConcoursEnfant =$data1['prixEnfant'] ;
+echo "<label class='form-label'> <b>Prix Enfants &nbsp</b></label><label class='form-label'> ".$prixConcoursEnfant."</label> &nbsp" ;
 echo "</td><td>";
-echo "<label class='form-label'> <b>Prix Adulte</b> ".$data1['prixAdulte']."</label> &nbsp" ;
+$prixConcoursAdulte =$data1['prixAdulte'] ;
+echo "<label class='form-label'> <b>Prix Adulte &nbsp</b> </label><label class='form-label'>".$prixConcoursAdulte."</label> &nbsp" ;
 echo "</td><td>";
-echo "<label class='form-label'> <b>Référent</b> ".$data1['referent']."</label>" ;
+echo "<label class='form-label'> <b>Référent &nbsp</b></label><label class='form-label'> ".$data1['referent']."</label>&nbsp " ;
+echo "</td><td>";
+echo "<label class='form-label'> <b>note &nbsp</b></label><label class='form-label'> ".$data1['note']."</label> &nbsp" ;
 echo "</td></tr></table>";
 echo "</div><div></div>";
 } 
@@ -195,7 +213,7 @@ foreach ($arrayValue as $value)
 	$elementsEditable = $elementsEditable .",".$value;
 }
 
-$sqlConcoursArchers= "select ".$elementsFixe.$elementsEditable." from concoursArchers as c,adherents as a where  c.id_adherent = a.id_adherent and c.id_concours =".$_SESSION['concoursSelected']." ORDER BY c.id_adherent" ;
+$sqlConcoursArchers= "select c.id_adherent,".$elementsFixe.$elementsEditable." from concoursArchers as c,adherents as a where  c.id_adherent = a.id_adherent and c.id_concours =".$_SESSION['concoursSelected']." ORDER BY c.id_adherent" ;
 // retrieve value for concours
 $reqArcherConcours = $db->query($sqlConcoursArchers) ;
 
@@ -242,20 +260,56 @@ echo '</thead>' ;
 echo '<tbody>' ;
 // Dumpt DATA
 $i=0;
+$archerCategorie ="";
 while ($data = $reqArcherConcours->fetch())
 {
 echo '<tr>' ;
+$id_adherentConcours = $data['id_adherent']; // Get current id_adhrent in row
+
 foreach($arrayValueFixe as $element)
  {
+
+	if (!strcmp($element, "categories"))
+		$archerCategorie = $data[$element] ;
 	echo '<td>' ;
 	echo "<label class='form-label'>".$data[$element]."</label>" ;
 	echo '</td>' ;
  }
+
 foreach($arrayValue as $element)
 {
 	echo '<td>' ;
 //	echo "<label class='form-label'>".$data[$element]."</label>";
-	echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$data[$element]."' >";
+
+switch ($element)
+	{
+
+		case "etat"	 :
+			$index_freeArchers =array_search ($id_adherentConcours,array_column($freeArchers,'id_adherent') );
+
+			if(is_numeric($index_freeArchers) )
+			{		
+
+				if($freeArchers[$index_freeArchers]['nb_concours'] < 3)
+					echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='gratuit' >";
+				else
+					echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$data[$element]."' >";
+			}	
+			else
+				echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$data[$element]."' >";
+			break ;
+		case "concoursPrix"	:
+			if	($archerCategorie < 5)
+			echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$prixConcoursEnfant."' >";
+			else
+			echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$prixConcoursAdulte."' >";
+			break;
+		default:	
+			echo "<input type='text' name=".$element.$i." id='".$element.$i."' class='form-control' value='".$data[$element]."' >";
+
+
+	}
+
 	echo '</td>' ;
 }
 echo '</tr>' ;
@@ -267,7 +321,8 @@ echo '</table>' ;
 echo '</form>'  ;
 }
 echo "<div></div>";
-echo "<input type='submit' name='validation' value='validation' form='Archers'>&nbsp";
+echo "<input type='submit' class='red' name='validation' value='validation' form='Archers'>&nbsp";
+echo '<input type="button" class="green" value="etat Concours" form="selectConcours" onClick="window.location.href=\'etatConcours.php\'">';
 
 }
 

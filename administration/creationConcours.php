@@ -9,7 +9,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
 
 <?php
 
-$arrayValue= array("concoursName" , "referent", "note" ,"prixAdulte" ,"prixEnfant");
+$arrayValue= array("concoursName" ,"concoursDate" ,"referent", "note" ,"prixAdulte" ,"prixEnfant");
 
 if(isset($_SESSION['authorized']))
 {
