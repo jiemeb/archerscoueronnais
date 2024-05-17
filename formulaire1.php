@@ -3,7 +3,7 @@ session_start();
 
 
 include("inc/questionsCaptcha.php");
-include("inc/prixCotisation.php");
+
 # Activation des sessions (pour que PHP charge la session de l'utilisateur, via le cookie PHPSESSID)
 # à placer impérativement avant tout affichage, car cette fonction a besoin d'envoyer des headers HTTP
 
@@ -14,19 +14,8 @@ $id_question_posee = array_rand($liste_questions);
 # Mémorisation de la question posée à l'utilisateur dans la session
 $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 
-<head>
-  <title>Archers de Coueron</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <!-- Bootstrap -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -36,7 +25,7 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
     function getAge() {
       var dateNaissance = new Date(document.getElementById("formulaire").elements["dateNaissance"].value);
       //     var diff = Date.now() - dateNaissance.getTime();
-      var date_fin = new Date('2024-12-31');
+      var date_fin = new Date('2025-12-31');
 
       var diff = date_fin - dateNaissance.getTime();
 
@@ -105,20 +94,9 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
     //  alert(getAge(new Date(1995, 12, 6))); //Date(année, mois, jour)
   </script>
   <link type="text/css" rel="stylesheet" href="css/style.css">
-</head>
-
-<body scroll=yes>
-  <div class="container">
-		<div class="row">
-			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
-			<div class="col-sm-8">
-				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2023-2024</h2>
-			</div>
-			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
-		</div>
-	</div>
-
+<?php
+include("inc/entete.php");
+?>
 
   <div class="container">
     <div class="row">
@@ -261,18 +239,46 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
           </div>
 
 
-
           <div class="row mt-5">
             <div class="col">
               <div class="mb-2">
                 <label class="form-label">Catégories de l'archer*</label>
                 <select class="form-select" name="categories" id="categories">
-                  <option value=0>Poussins - Années de naissance : Apres 2013 - Tarif 75 euros</option>
-                  <option value=1>Benjamins - Années de naissance : 2013 et 2012 - Tarif 75 euros</option>
-                  <option value=2>Minimes - Années de naissance : 2011 et 2010 - Tarif 75 euros</option>
-                  <option value=3>Cadets - Années de naissance : 2009, 2008 et 2007 - Tarif 85 euros</option>
-                  <option value=4>Jeunes - Années de naissance : 2006, 2005 et 2004 - Tarif 85 euros</option>
-                  <option value=5>Séniors - Années de naissance : avant 2004 - Tarif 100 euros</option>
+<?php
+                $messageOption = "<option value=0>Poussins - Années de naissance : Apres ";
+                $messageOption .=$annee__fede -11 ." - Tarif ".$license[0]." euros</option>";
+                echo $messageOption ;
+
+                $messageOption = "<option value=1>Benjamins - Années de naissance : ";
+                $messageOption .= $annee__fede-11 ." et "  ;
+                $messageOption .= $annee__fede -12 ;
+                $messageOption .="  - Tarif ".$license [1]." euros</option>" ;
+                echo $messageOption ;
+
+                $messageOption = "<option value=2>Minimes - Années de naissance : ";
+                $messageOption .=$annee__fede-13 ." et " ;
+                $messageOption .=$annee__fede -14 ."  - Tarif ".$license [2]." euros</option>" ;
+                echo $messageOption ;
+
+                $messageOption = "<option value=3>Cadets - Années de naissance : " ;
+                $messageOption .=$annee__fede -15 . ",  ";
+                $messageOption .=$annee__fede -16 ." et " ;
+                $messageOption .=$annee__fede -17 ." - Tarif ".$license [3]." euros</option>" ;
+
+                echo $messageOption ;
+   
+                $messageOption = "<option value=4>Jeunes - Années de naissance : ";
+                $messageOption .=$annee__fede -18 .", ";
+                $messageOption .=$annee__fede -19 ." et " ;
+                $messageOption .=$annee__fede -20 ." - Tarif ".$license [4]." euros</option>" ;
+
+                echo $messageOption ;
+
+                $messageOption = "<option value=5>Séniors - Années de naissance : avant ";
+                $messageOption .=$annee__fede -20 ." - Tarif ".$license [5]." euros</option>" ;
+                echo $messageOption ;
+   
+?>
                 </select>
               </div>
             </div>
@@ -327,10 +333,12 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
           <div class="row mt-5">
             <div class="col-md-12">
               <label><b>Souhaitez-vous un kit pour archer ?</b></label>
-              Contenu du kit : 6 flèches + Un carquois + Une palette à cale (DECUT) + Une protection de bras + Une dragonne poignée ou doigt<br>
+              Contenu du kit : 6 flèches + Un carquois + Une palette à cale (DECUT) + Une protection de bras + Une dragonne doigt<br>
 
               <br>
-              Je souhaite un kit tir à l'arc d'un montant de 47 €<br>
+              <?php
+              echo "Je souhaite un kit tir à l'arc d'un montant de ".$kit." €<br>" ;
+              ?>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="kit" value="oui" required>
                 <label class="form-check-label">
@@ -347,7 +355,9 @@ $_SESSION['captcha']['id_question_posee'] = $id_question_posee;
             </div>
             <div class="col-md-12">
               <br>
-              Je souhaite 3 flèches supplementaires d'un montant de 10 €<br>
+              <?php
+              echo "Je souhaite 3 flèches supplementaires d'un montant de ".$lot." €<br>" ;
+              ?>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="lot" value="oui" required>
                 <label class="form-check-label">

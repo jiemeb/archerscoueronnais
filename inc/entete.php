@@ -2,6 +2,8 @@
 /*
 $error=chdir ('');
 getcwd()." ".$error .  "\n";*/
+
+include('constant.php');
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
@@ -24,7 +26,13 @@ getcwd()." ".$error .  "\n";*/
       <div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
       <div class="col-sm-8">
         <h1>Archers de Coüeron</h1>
-        <h2>Inscriptions saison 2023-2024</h2>
+        <?php
+        $chaineEnte = "<h2>Inscriptions saison " ;
+        $chaineEnte .= $annee__fede -1 ;
+        $chaineEnte .= "-".$annee__fede ;
+        $chaineEnte .= "</h2>";
+        echo $chaineEnte ;
+        ?>
       </div>
       <div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
     </div>

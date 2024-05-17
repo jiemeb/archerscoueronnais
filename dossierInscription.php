@@ -1,52 +1,53 @@
 <?php
 session_start();
 
-include("inc/prixCotisation.php");
+
+include("inc/entete.php");
+
+
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-<head>
-	<title>Archers de Coueron</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-	<!-- Bootstrap -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- <link type="text/css" rel="stylesheet" href="css/styleResultat.css" />-->
-   <link type="text/css" rel="stylesheet" href="css/styleResultat.css" media="screen"/>
-  <link type="text/css" rel="stylesheet" href="css/styleResultatPrint.css" media="print"/>
+	<link type="text/css" rel="stylesheet" href="css/styleResultat.css" media="screen"/>
+	<link type="text/css" rel="stylesheet" href="css/styleResultat.css" media="print"/>
 
 
-</head>
-
-<body scroll=yes>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-2 d-none d-sm-block"><img src="/images/logo.jpg" class="img-fluid" /></div>
-			<div class="col-sm-8">
-				<h1>Archers de Coüeron</h1>
-				<h2>Inscriptions saison 2023-2024</h2>
-			</div>
-			<div class="col-sm-2 d-none d-sm-block text-end"><img src="/images/cible.gif" class="img-fluid" /></div>
-		</div>
-	</div>
+   <!--   popupWin.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"><body onload="window.print()">' + divToPrint.innerHTML + '</html>'); -->
 
 
-<script type="text/javascript">
+<script langage="javascript">
    function PrintDiv() {
       var divToPrint = document.getElementById('divToPrint');
-      var popupWin = window.open('', '_blank', 'width=500,height=600');
+      var popupWin = window.open('', '_blank', 'width=600,height=800');
       popupWin.document.open();
-      popupWin.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr"><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+	  popupWin.document.write('<html><body   onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
       popupWin.document.close();
            }
 </script>
 
+<script language="javascript">
+function PrintMe(DivID) {
+var disp_setting="toolbar=yes,location=no,";
+disp_setting+="directories=yes,menubar=yes,";
+disp_setting+="scrollbars=yes,width=650, height=600, left=100, top=25";
+   var content_vlue = document.getElementById(DivID).innerHTML;
+   var docprint=window.open("","",disp_setting);
+   docprint.document.open();
+   docprint.document.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//FR"');
+   docprint.document.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+   docprint.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">');
+   docprint.document.write('<head><title>My Title</title>');
+   docprint.document.write('<style type="text/css">body{ margin:0px;');
+   docprint.document.write('font-family:verdana,Arial;color:#000;');
+   docprint.document.write('font-family:Verdana, Geneva, sans-serif; font-size:12px;}');
+   docprint.document.write('a{color:#000;text-decoration:none;} </style>');
+   docprint.document.write('</head><body onLoad="self.print()">');
+   docprint.document.write(content_vlue);
+   docprint.document.write('</body></html>');
+   docprint.document.close();
+   docprint.focus();
+}
+</script>
+
+</head>
 
 
 	<body lang="fr-FR" link="#000080" vlink="#800000" dir="ltr">
@@ -54,9 +55,10 @@ include("inc/prixCotisation.php");
 <!--Bouton -->
 <div id=noprint>
 <span><br><br>
-  <input class="btn btn-success"  value="Impression" title="Impression" onclick='PrintDiv();'>
+  <!--<input class="btn btn-success"  value="Impression" title="Impression" onclick='PrintDiv();'> -->
+  <input class="btn btn-success"  value="Impression" title="Impression" onclick='PrintMe("divToPrint");'>
   <span><br> Imprimer le document en utilisant le <b>"bouton Impression"</b>. <br>
-    mettre en option d'impression: "2 pages par feuille -et- Recto-verso bord court" <br>
+    mettre en option d'impression: <br><b>"mode portrait ,2 pages par feuille -et- Recto-verso bord court"</b> <br>
   Signer le document et nous le faire parvenir par courrier ou par mail ou de la main à la main lors de notre rendez-vous
    </span>
 </div>
@@ -74,7 +76,7 @@ include("inc/prixCotisation.php");
 
 
 
-<!--    <div id="Section1" dir="ltr" gutter="19" style="column-count: 2"><p style="margin-bottom: 0cm; line-height: 100%"> -->
+<!--    <div id="Section1" dir="ltr" gutter="19" style="column-count: 1"><p style="margin-bottom: 0cm; line-height: 100%"> -->
       <div id="Section1" dir="ltr" gutter="19" style="column-count: 1"><p style="margin-bottom: 0cm; line-height: 100%">
 		<br/>
 		</p>
@@ -85,7 +87,7 @@ include("inc/prixCotisation.php");
         <b>Categories</b></p>
         </td>
         <td width="168" class="cel"><p align="center" style=" margin-top: 0.14cm">
-        <b>age en 2023</b></p>
+        <b>age en 2025</b></p>
         </td>
         <td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
           <b>Prix cotisation</b></p>
@@ -99,7 +101,7 @@ include("inc/prixCotisation.php");
 					<b>moins de 11 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
-						<b><?php echo $license['0']."€" ?></b></p>
+					<b><?php echo $license[0]."€" ?></b></p>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -110,7 +112,7 @@ include("inc/prixCotisation.php");
 						<b>11 et 12 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
-						<b><?php echo $license['1']."€" ?></b></p>
+						<b><?php echo $license[1]."€" ?></b></p>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -122,7 +124,7 @@ include("inc/prixCotisation.php");
 						<b>13	et 14 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
-						<b><?php echo $license['2']."€" ?></b></p>
+						<b><?php echo $license[2]."€" ?></b></p>
 					</td>
 				</tr>
         <tr valign="top">
@@ -134,7 +136,7 @@ include("inc/prixCotisation.php");
 						<b>15	à 17 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style=" margin-top: 0.14cm">
-						<b><?php echo $license['3']."€" ?></b></p>
+						<b><?php echo $license[3]."€" ?></b></p>
 					</td>
 				</tr>
         <tr valign="top">
@@ -146,7 +148,7 @@ include("inc/prixCotisation.php");
 						<b>18 à 20 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style= margin-top: 0.14cm">
-						<b><?php echo $license['4']."€" ?></b></p>
+						<b><?php echo $license[4]."€" ?></b></p>
 					</td>
 				</tr>
         <tr valign="top">
@@ -158,7 +160,7 @@ include("inc/prixCotisation.php");
 						<b>plus de 20 ans</b></p>
 					</td>
 					<td width="135" class="cel"><p align="center" style="margin-top: 0.14cm">
-						<b><?php echo $license['5']."€" ?></b></p>
+						<b><?php echo $license[5]."€" ?></b></p>
 					</td>
 				</tr>
 		</table>
@@ -180,7 +182,7 @@ include("inc/prixCotisation.php");
     <img src="images/dossierInscriptionLogo.png" name="Forme2" alt="Forme2"  text-align="center" />
 	<br>
     <h2 style="margin-left: 0cm; text-indent: 0cm; margin-top: 0.13cm">
-    		<font color="#ffffff"><span text-align="center" style="background: #231f20">SAISON 2022-2023</span></font></h2>
+    		<font color="#ffffff"><span text-align="center" style="background: #231f20">SAISON <?php echo $annee__fede -1 . "-" . $annee__fede ;?></span></font></h2>
   <LABEL> <h2>ÉTOILE SPORTIVE COUËRONNAISE, association depuis 1910.</h2><br><br>
 Extrait de l’article 6 des statuts : «L’association est affiliée aux Fédérations Sportives Nationales régissant les sports qu’elle pratique, ainsi qu’à la Ligue Française de l’Enseignement et de l’Éducation permanente, et par la suite à l’Union Française des Œuvres d’Éducation Physique (UFOLEP) exception faite pour la section Athlétisme qui reste affiliée à la F.S.G.T»
 C’est donc un club Multisports qui comprend des sections :<br>
@@ -216,14 +218,14 @@ Contacts ESC	 Didier Ménard<br>
   echo "Représentant légal: nom <strong>".$_SESSION['nomRep2']."</strong> prénom <strong>".$_SESSION['prenomRep2']."</strong><br>";
   ?>
   <h2  >
-  		<font color="#ffffff"><span  align="center" style="background: #231f20">AUTORISATION PARENTALE - VALIDITÉ SAISON 2022-23</span></font></h2>
+  		<font color="#ffffff"><span  align="center" style="background: #231f20">AUTORISATION PARENTALE - VALIDITÉ SAISON <?php echo $annee__fede -1 . "-" . $annee__fede ;?></span></font></h2>
 <br>
 
 <span>
   Pour un enfant mineur ou autorisation pour un incapable majeur<br>
 <br>
   Madame, Monsieur,<br>
-  Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2022/2023, et nous vous en remercions.<br>
+  Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison <?php echo $annee__fede -1 . "-" . $annee__fede ;?>, et nous vous en remercions.<br>
   Nous vous rappelons que la section n’est plus responsable de votre enfant en dehors des horaires et jours d’entraînement.<br>
   Durant cette année votre enfant peut être amené à participer à des concours.<br>
   Pour qu’il puisse être pris en charge pour son transport, par la section ou une autre famille, nous vous invitons à compléter et signer la décharge parentale ci-dessous.<br>
@@ -255,7 +257,7 @@ Contacts ESC	 Didier Ménard<br>
 <hr>
 <!--  page 4 -->
 <h2  style="page-break-before: always ; page-break-after: auto; page-break-inside: auto"; align="center" >
-		<font color="#ffffff"><span  text-align="center" style="background: #231f20">SAISON 2022-2023</span></font></h2>
+		<font color="#ffffff"><span  text-align="center" style="background: #231f20">SAISON <?php echo $annee__fede -1 . "-" . $annee__fede ;?></span></font></h2>
 
 
   	<table width="100%" cellpadding="2" cellspacing="1" style="background: transparent; border-top: 2px double ; border-bottom: 2px double ; border-left: 2px double ; border-right:2px double; ">
@@ -264,13 +266,13 @@ Contacts ESC	 Didier Ménard<br>
 
 			<tr valign="top" style="background: transparent;  border-top: 2px double ; border-bottom: 2px double ; border-left: 2px double ; border-right: 2px double ">
 				<td width="50%" style="background: transparent;  border-top: 2px double ; border-bottom: 2px double  ; border-left: 2px double ; border-right: 2px double "><p >
-					<b>Certificat	médical de moins de 1 an<br>DATE:______________</b>
-      <br>&nbsp; Pour une première inscription</p>
+					<b>Certificat	médical de moins 3 mois<br>DATE:______________</b>
+      <br>&nbsp; </p>
 				</td>
         <td rawspan rowspan="2" width="50%" style="border-top: 2px double ; border-bottom: 2px double ; border-left: 2px  ; border-right:2px double ;">
           <p style=margin-left: 0.25cm; margin-top: 0cm; margin-bottom: 0cm>
-  					<b>ATTENTION IMPORTANT :</b> si votre certificat médical précédent  <b><u>date de moins de 3 ans,</u></b>
-             il est encore valable sous réserve de satisfaire au questionnaire médical que vous devez absolument remplir et conserver par devers vous.<b><u>
+  					<b>ATTENTION IMPORTANT :</b>  votre certificat médical est nécessaire si  une des réponses est positive 
+           au questionnaire médical.Questionnaire  que vous devez absolument remplir et conserver par devers vous.<b><u>
                Je déclare satisfaire au questionnaire médical QS-SPORT Cerfa N° 15699*01 que j’ai rempli et que je conserve par devers moi.</u></b><br><br>
                  <i>(Signature)<br><br></i>
                  <b>Couëron le :</b><br><br>
@@ -279,14 +281,14 @@ Contacts ESC	 Didier Ménard<br>
       </tr>
         <tr valign="top" style="background: transparent; border-top: 2px double; border-bottom: 2px double ; border-left: 2px double ; border-right: 2px double">
           <td width="50%" style="border-top: 2px double ; border-bottom: 2px double; border-left: 2px double; border-right: 2px double "><p style="margin-left: 0.25 cm; margin-top: 0 cm; margin-bottom: 0cm">
-  					<b>Certificat	médical de moins de 3 ans<br>DATE:______________</b>
-        <br>&nbsp; Pour un renouvellement</p>
+  					<b>Questionnaire santé <br>DATE:______________</b>
+        <br>&nbsp;</p>
   				</td>
 
 			</tr>
 	</table>
 <hr>
-<b> Piece a fournir pour les mineurs: </b><br>Autorisation Parental <br>
+<b> Pièce a fournir pour les mineurs: </b><br>Autorisation Parental <br>
 Photocopie de la carte d'identité<br><br>
 <hr>
 <?php

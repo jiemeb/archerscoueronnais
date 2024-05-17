@@ -1,10 +1,6 @@
 <?php
 session_start();
-
-include("inc/prixCotisation.php");
-
-
-
+include constant.php
 ?>
 <html>
 <head>
@@ -17,7 +13,7 @@ include("inc/prixCotisation.php");
       var popupWin = window.open('', '_blank', 'width=400,height=500');
       popupWin.document.open();
       popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
-       popupWin.document.close();
+      popupWin.document.close();
            }
 </script>
 
@@ -28,7 +24,7 @@ include("inc/prixCotisation.php");
 	<div class="myHeader1"> </div>
 	<div class="myHeader2" >
 		<h1>Archers de Coüeron</h1>
-		<h2>Inscriptions saison 2023-2024</h2>
+		<h2>Inscriptions saison 2024-2025</h2>
 	</div>
 	<div class="myHeader3"> </div>
 
@@ -40,7 +36,7 @@ include("inc/prixCotisation.php");
     <?php  //<div style="width:200px;height:300px;background-color:teal;">
 
 print ( "
-<h2>AUTORISATION PARENTALE  - VALIDITÉ SAISON 2022 2023</h2>
+<h2>AUTORISATION PARENTALE  - VALIDITÉ SAISON 2024 2025</h2>
 <pre>
 
 Pour un enfant mineur ou autorisation pour un incapable majeur
@@ -50,7 +46,7 @@ Pour un enfant mineur ou autorisation pour un incapable majeur
 Madame, Monsieur,
 
 
-Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2023/2024, et nous vous en remercions.
+Vous avez inscrit votre enfant à l’ESC Tir à l’Arc de Couëron pour la saison 2024/2025, et nous vous en remercions.
 Nous vous rappelons que la section n’est plus responsable de votre enfant en dehors des horaires et jours d’entraînement.
 Durant cette année votre enfant peut être amené à participer à des concours.
 Pour qu’il puisse être pris en charge pour son transport, par la section ou une autre famille,

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include("inc/prixCotisation.php");
+include("inc/constant.php");
 
 
 

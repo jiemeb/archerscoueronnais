@@ -32,7 +32,6 @@ include(dirname(__FILE__).'/inc/entete.php');
 	if ( isset ($_SESSION['login']))
 		{
 		$login = $_SESSION['login']	;
-
 		$query = sprintf("SELECT mot_passe,authorized FROM users WHERE id_user='%s' ;",$login);
 /*		$recipesStatement = $db->prepare($query);
 		$recipesStatement->execute();
