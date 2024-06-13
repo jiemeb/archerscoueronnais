@@ -5,14 +5,14 @@ include("inc/entete.php");
 	<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 
-<!---
+
 <center>
 	<p>
 		<br>
-			<label class="form-label"><marquee bgcolor="red">Dernière minute............Plus de place pour les jeunes...reste 2 places pour les poussins.........Dernière minute</marquee></label>
+			<label class="form-label"><marquee bgcolor="green">Ouverture du site pour les inscriptions</marquee></label>
 		<br>
 	</p>
-</center> --->
+</center> 
 
 	<div class="container">
 		<div class="row">

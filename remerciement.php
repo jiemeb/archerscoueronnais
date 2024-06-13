@@ -53,8 +53,9 @@ return $resultat & ($time>1);
 
 /* Mettre ici l'adresse mail de votre site Web : si votre site est http://monsite.free.fr/ alors votre adresse email est monsite@free.fr */
 
-$admin = 'Jean-Marie Bonnand <archerscoueronnais@free.fr>';
-$message = '<html lang="fr">
+$admin = 'Jean-Marie Bonnand<archerscoueronnais@free.fr>';
+$message = '<!DOCTYPE html>
+<html lang="fr">
 <head>
 <meta charset="utf-8" />
 <title>Les archers de Coueron</title>
