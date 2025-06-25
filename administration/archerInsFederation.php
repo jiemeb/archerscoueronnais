@@ -10,7 +10,7 @@ include(dirname(__FILE__).'/../inc/entete.php');
 <?php
 $arrayValueFixe  = array ("categories", "civilite", "nom", "prenom", "dateNaissance","nationalite", "email1","email2","telephone1","telephone2","adresse","cp","commune","nomRep1","prenomRep1" ) ;
 // Valeur a éditer
-$arrayValue= array("certificat","dossier", "licence", "groupe","remarque");
+$arrayValue= array("arcType","certificat","dossier", "licence", "groupe","remarque");
 
 if(isset($_SESSION['authorized']))
 {
@@ -25,8 +25,20 @@ $reqArcher = $db->query($sqlArcher) ;
 <?php
 while ($rowArcher = $reqArcher->fetch())
 {
-$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
-echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
+		$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
+	if(isset($_POST['archer']))
+	{
+		if ($rowArcher['id_adherent'] == $_POST['archer'] )
+		{
+		echo "<option value=".$rowArcher['id_adherent']." selected >".$archerName.'</option>' ;
+		}
+		else
+		{
+		echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
+		}
+	}else
+		echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
+
 }
 echo '</select>' ;
 echo "<input type='submit' value='submit' form='selectArcher'>";
@@ -71,8 +83,14 @@ catch (Exception $E)
 <form  method='post' id='formulaire'>
 <input type='hidden' name='archerSelected' value="<?php echo $archerSelected; ?>">
 <?php
-$i=0;
 
+echo "<div class='col-md'>";
+echo "	<div class='mb-3'>";
+echo "<img src='../photos/".str_replace(' ','',$data['prenom'])."_".str_replace(' ','',$data['nom'])
+.".png '  width='200' >";
+echo "	</div> ";
+echo "</div> ";
+$i=0;
  foreach($arrayValueFixe as $element)
  {
 	 if (!($i%6))
@@ -84,7 +102,15 @@ $i=0;
 echo "<div class='col-md'>";
 echo "	<div class='mb-2'>";
 echo "<label class='form-label'>".$element."=</label>" ;
-echo  $data[$element] ;
+if ($element == "dateNaissance")
+{
+echo date( 'd/m/Y',strtotime($data[$element])) ;
+}
+else
+{
+	echo  $data[$element] ;
+}
+
 echo "	</div> ";
 echo "</div> ";
  }

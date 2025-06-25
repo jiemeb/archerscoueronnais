@@ -5,7 +5,8 @@ session_start();
 include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
 
-$arrayValueFixe  = array ("categories", "civilite", "nom", "prenom","dateNaissance","nationalite","adresse","cp","commune","email1","email2","telephone1","telephone2","dossier","certificat", "debutant" ,"chequeKit"  ,"chequeCotisation","groupe" ) ;
+//$arrayValueFixe  = array ("categories", "civilite", "nom", "prenom","dateNaissance","nationalite","adresse","cp","commune","email1","email2","telephone1","telephone2","dossier","certificat", "debutant" ,"chequeKit"  ,"chequeCotisation","groupe" ) ;
+$arrayValueFixe  = array ("categories", "civilite", "nom", "prenom","dateNaissance","dossier","groupe" ) ;
 // Valeur a éditer
 $arrayValue= array();
 
@@ -204,7 +205,7 @@ die('Erreur SQL !<br>'.$sql.'<br>');
 <input  name='filterValue' value="<?php echo $_POST['filterValue']; ?>">
 <p> </p>
 
-
+<!-- debut rendu -->
 <style>
 	.menu-fixe {  position:fixe;
 	height: 30px;
@@ -228,7 +229,7 @@ th {
 background-color: #eee;
 }
 </style>
-<div id="tableResultat" style="overflow:scroll;width:100%;height:650px">
+<div id="tableResultat" style="overflow:scroll;">
 
 <table >
 <!--<thead> --> 
@@ -237,6 +238,7 @@ background-color: #eee;
 <!--<tr>-->
 
 <?php
+/*
 // Entete de colonne
 foreach ($arrayValueFixe as $element)
 {
@@ -259,35 +261,35 @@ foreach($arrayValue as $element)
 	echo '</div >'	;
 	echo '</th> ' ;
 }
-echo '</tr>' ;
+echo '</tr>' ; */
 //echo '</thead>' ;
 
 //echo '<tbody>' ;
-// Dumpt DATA	
+// Dump DATA	
 echo '<div >'	;
+	echo '<tr>' ;
 
+$i=0;    
 while ($data = $req->fetch())
 {
-	echo '<tr>' ;
- foreach($arrayValueFixe as $element)
- {
-
-	echo '<td>' ;
-	//echo "<label class='form-label'>".$data[$element]."</label>" ;
-	echo "$data[$element]" ;
-	echo '</td>' ;
- }
-
-
-foreach($arrayValue as $element)
+if (!($i%4))
 {
-
-	echo '<td>' ;
-//	echo "<label class='form-label'>".$data[$element]."</label>";
-	echo "$data[$element]";
-	echo '</td>' ;
+    echo '</tr>' ;
+    echo '<tr>' ;
 
 }
+echo '<td>' ;
+echo "<div class='col-md'>";
+echo "	<div class='mb-3'>";
+echo "<img src='../photos/".str_replace(' ','',$data['prenom'])."_".str_replace(' ','',$data['nom']).".png '  width='200' >";
+echo "<p>".$data['prenom']." " ;
+echo  "<p>".$data['nom'] ." ";
+echo "	</div> ";
+echo "</div> ";
+    
+echo '</td>' ;
+$i+=1 ;
+
 
 }
 echo '</div >'	;

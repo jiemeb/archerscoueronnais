@@ -72,7 +72,7 @@ Jean-Marie Bonnand
 
 
 //$dest=$_SESSION['email1'];
-$dest='archer <archersdecoueron@gmail.com>';
+$dest='archer <archersdecoueron@free.fr';
 
 $sujet='Inscription tir à l\'arc '.date("H:i:s");
 //$message="Ma foi,\nTout semble fonctionner correctement.\n\nEnvoyé depuis l'IP={$_SERVER["REMOTE_ADDR"]}";

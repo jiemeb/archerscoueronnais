@@ -9,9 +9,7 @@ include("inc/entete.php");
 <center>
 	<p>
 		<br>
-		<label class="form-label"><marquee bgcolor="red">Plus de place pour les enfants .Ouverture du site pour les inscriptions</marquee></label>
-		<!--label class="form-label"><marquee bgcolor="green">Ouverture du site pour les inscriptions</marquee></label> --> 
-
+		<!--	<label class="form-label"><marquee bgcolor="red">Plus de place pour les enfants .Ouverture du site pour les inscriptions</marquee></label> \-->
 		<br>
 	</p>
 </center> 
@@ -24,7 +22,7 @@ include("inc/entete.php");
 					Cher.e.s lidencié.e.s et familles,<br><br>
 				</p>
 				<p>
-				Les nouvelles inscriptions pour la prochaine saison sont ouvertes.. <br>
+				Les inscriptions pour la prochaine saison sont ouvertes.. <br>
 				Pour vous inscrire :<br><br>
 
 					<b>Etape 1 : </b> Complétez le formulaire en ligne en cliquant sur le bouton suivant en bas de page. <b>Imprimez, vérifiez et signez ce dossier.</b><br><br>
@@ -41,7 +39,9 @@ include("inc/entete.php");
 				</p>
 				<p>
 
-					
+					Pour les renouvellements de licence, réinscriptions en ligne obligatoire du <u>15 mai au 31 mai 2025.</u><br>
+					Dépôt du dossier COMPLET le mercredi 4 juin de 18h30 à 20h30 ou le mardi 10 juin de 19h à 20h30<br><br>
+
 					Pour les nouvelles inscriptions, elles auront lieu en ligne obligatoire entre le <u>14 Juin et le 22 juin 2025</u>.<br> 
 					Dépôt du dossier COMPLET le mercredi 25 juin de 18h30 à 20h30 
 					<br> Le nombre de places sera limitée aux capacités d'accueil et d'encadrement.

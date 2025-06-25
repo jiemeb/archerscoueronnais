@@ -124,13 +124,13 @@ include("inc/entete.php");
             <div class="col-md">
               <div class="mb-2">
                 <label class="form-label">Prénom*</label>
-                <input type="text" name="prenom" class="form-control" required="required">
+                <input type="text" name="prenom" class="text-capitalize form-control" required="required">
               </div>
             </div>
             <div class="col-md">
               <div class="mb-2">
                 <label class="form-label">Nom*</label>
-                <input type="text" name="nom" class="form-control" required="required">
+                <input type="text" name="nom"  class="text-uppercase form-control" required="required">
               </div>
             </div>
             <div class="col-md">
@@ -145,7 +145,7 @@ include("inc/entete.php");
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Nationalité*</label>
-                <input type="text" name="nationalite" class="form-control" required="required">
+                <input type="text" name="nationalite" class="text-uppercase form-control" required="required">
               </div>
             </div>
           </div>
@@ -198,13 +198,13 @@ include("inc/entete.php");
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Prénom representant legal1*</label>
-                <input type="text" name="prenomRep1" id="prenomRep1" class="form-control" required="required">
+                <input type="text" name="prenomRep1" id="prenomRep1" class="text-capitalize form-control" required="required">
               </div>
             </div>
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Nom representant legal1*</label>
-                <input type="text" name="nomRep1" id="nomRep1" class="form-control" required="required">
+                <input type="text" name="nomRep1" id="nomRep1" class="text-uppercase form-control" required="required">
               </div>
             </div>
             <div class="col-md-4">
@@ -220,13 +220,13 @@ include("inc/entete.php");
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Prénom representant legal2*</label>
-                <input type="text" name="prenomRep2" id="prenomRep2" class="form-control" required="required">
+                <input type="text" name="prenomRep2" id="prenomRep2" class="text-capitalize form-control" required="required">
               </div>
             </div>
             <div class="col-md-4">
               <div class="mb-2">
                 <label class="form-label">Nom representant legal2*</label>
-                <input type="text" name="nomRep2" id="nomRep2" class="form-control"  maxlenght="20" required="required">
+                <input type="text" name="nomRep2" id="nomRep2" class="text-uppercase form-control"  maxlenght="20" required="required">
               </div>
             </div>
 

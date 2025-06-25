@@ -8,9 +8,9 @@ include(dirname(__FILE__).'/../inc/entete.php');
  ?>
 
 <?php
-$arrayValueFixe  = array ( "concoursName","ConcoursDate" ,"prixEnfant","prixAdulte") ;
+$arrayValueFixe  = array ( "concoursName","ConcoursDate" ) ;
 // Valeur a éditer
-$arrayValue= array("referent", "note");
+$arrayValue= array("prixEnfant","prixAdulte","referent", "note");
 
 if(isset($_SESSION['authorized']))
 {
@@ -124,7 +124,7 @@ th {
 background-color: #eee;
 }
 </style>
-<thead>
+<!--thead-->
 <tr>
 <?php
 // Entete de colonne
@@ -144,8 +144,8 @@ foreach($arrayValue as $element)
 	echo '</th>' ;
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 // Dumpt DATA
 $i=0;
 while ($data = $reqConcours->fetch())
@@ -173,7 +173,7 @@ echo '</tr>' ;
 $i=$i+1 ;
 
 }
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 echo '</form>'  ;
 

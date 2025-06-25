@@ -89,7 +89,7 @@ th {
 background-color: #eee;
 }
 </style>
-<thead>
+<!--thead-->
 <tr>
 <?php
 // Entete de colonne
@@ -111,8 +111,8 @@ foreach($arrayValue as $element)
 	echo '</th>' ;
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 // Dump DATA
 $i=0;
 $concoursPrix = 0;
@@ -155,7 +155,7 @@ $i=$i+1 ;
 
 }
 echo '<tr></tr>' ;
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 
 echo "<div>&nbsp </div>";
@@ -195,7 +195,7 @@ th {
 background-color: #eee;
 }
 </style>
-<thead>
+<!--thead-->
 <tr>
 <?php
 // Entete de colonne
@@ -218,8 +218,8 @@ background-color: #eee;
 
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 
 foreach ($data as $dataCursor)
 {
@@ -229,7 +229,7 @@ foreach ($data as $dataCursor)
 }
 
 echo '<tr></tr>' ;
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 
 
@@ -264,7 +264,7 @@ th {
 background-color: #eee;
 }
 </style>
-<thead>
+<!--thead-->
 <tr>
 <?php
 // Entete de colonne
@@ -276,8 +276,8 @@ foreach($arraypaiement as $element)
 	echo '</th>' ;
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 
 // Dump DATA
 $i=0;
@@ -298,7 +298,7 @@ $i=$i+1 ;
 
 }
 echo '<tr></tr>' ;
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 
 
@@ -314,7 +314,7 @@ function categorie ( $dateNaissance)
 
 	//var_dump ($dateNaissance);
 
-	$dateF= new DateTime ('2024-12-31');
+	$dateF= new DateTime ('2025-12-31');
 	$dateN =  new DateTime($dateNaissance) ;
 
 

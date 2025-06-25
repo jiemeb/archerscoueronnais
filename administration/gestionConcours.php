@@ -5,8 +5,8 @@ session_start();
 include(dirname(__FILE__).'/../inc/connexionPDO.php');
 include(dirname(__FILE__).'/../inc/entete.php');
 
- ?>
-
+?>
+<link type="text/css" rel="stylesheet" href="css/style.css">
 <?php
 $arrayValueFixe  = array ( "prenom","nom", "licence", "categories", "arcType"  ) ;
 // Valeur a éditer
@@ -221,10 +221,17 @@ $reqArcherConcours = $db->query($sqlConcoursArchers) ;
 echo "<form id='Archers' method='post'>";
 
 ?>
-<div>&nbsp</div>
-<table >
+<p> </p>
+
 <style>
+	.menu-fixe {  position:fixe;
+	height: 30px;
+      top: 0;
+      right: 0;
+      left: 0;}
+
       table,
+	  tbody,
       th,
       td {
 		text-align: center;
@@ -239,26 +246,36 @@ th {
 background-color: #eee;
 }
 </style>
-<thead>
+<div id="tableArcher" style="overflow:scroll;width:100%;height:650px">
+
+<table >
+<!--thead-->
 <tr>
 <?php
 // Entete de colonne
 foreach ($arrayValueFixe as $element)
 {
 	echo '<th>' ;
-	echo "<label class='form-label'>".$element."</label>" ;
+	echo '<div class="menu-fixe"> '	;
+	//echo "<label class='form-label'>".$element."</label>" ;
+	echo "$element" ;
+	echo '</div >'	;
 	echo '</th>' ;
 }
 foreach($arrayValue as $element)
 {
 	echo '<th>' ;
-	echo "<label class='form-label'>".$element."</label>" ;
+	echo '<div class="menu-fixe"> '	;
+	//echo "<label class='form-label'>".$element."</label>" ;
+	echo "$element" ;
+	echo '</div >'	;
 	echo '</th>' ;
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 // Dumpt DATA
+echo '<div >'	;
 $i=0;
 $archerCategorie ="";
 while ($data = $reqArcherConcours->fetch())
@@ -272,7 +289,8 @@ foreach($arrayValueFixe as $element)
 	if (!strcmp($element, "categories"))
 		$archerCategorie = $data[$element] ;
 	echo '<td>' ;
-	echo "<label class='form-label'>".$data[$element]."</label>" ;
+	//echo "<label class='form-label'>".$data[$element]."</label>" ;
+	echo "$data[$element]" ;
 	echo '</td>' ;
  }
 
@@ -312,13 +330,15 @@ switch ($element)
 
 	echo '</td>' ;
 }
+echo '</div >'	;
 echo '</tr>' ;
 $i=$i+1 ;
 
 }
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 echo '</form>'  ;
+echo '</div>' ;
 }
 echo "<div></div>";
 echo "<input type='submit' class='red' name='validation' value='validation' form='Archers'>&nbsp";

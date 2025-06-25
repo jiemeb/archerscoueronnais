@@ -8,9 +8,9 @@ include(dirname(__FILE__).'/../inc/entete.php');
 
 
 <?php
-$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "email1","telephone1","kit","lot" ) ;
+$arrayValueFixe  = array ("categories", "civilite", "prenom", "nom","dateNaissance", "listAttente","email1","telephone1","kit","lot" ) ;
 // Valeur a éditer
-$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite", "arc" ,"chequeKit" ,"chequeCotisation", "groupe","remarque");
+$arrayValue= array("dossier" ,"certificat", "debutant" ,"lateralite","arcType" , "arc" ,"chequeKit"  ,"chequeCotisation","licence" , "groupe");
 
 if(isset($_SESSION['authorized']))
 {
@@ -25,8 +25,20 @@ $reqArcher = $db->query($sqlArcher) ;
 <?php
 while ($rowArcher = $reqArcher->fetch())
 {
-$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
-echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
+
+	$archerName=$rowArcher['prenom']." ".$rowArcher['nom'];
+	if(isset($_POST['archer']))
+	{
+		if ($rowArcher['id_adherent'] == $_POST['archer'] )
+		{
+		echo "<option value=".$rowArcher['id_adherent']." selected >".$archerName.'</option>' ;
+		}
+		else
+		{
+		echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
+		}
+	}else
+		echo "<option value=".$rowArcher['id_adherent'].">".$archerName.'</option>' ;
 }
 echo '</select>' ;
 echo "<input type='submit' value='submit' form='selectArcher'>";
@@ -60,6 +72,7 @@ $data = $db->query($sql)->fetch();
 catch (Exception $E)
 {
 	die('Erreur SQL !<br>'.$e.'<br>');
+
 }
 
 
@@ -72,6 +85,10 @@ catch (Exception $E)
 <input type='hidden' name='archerSelected' value="<?php echo $archerSelected; ?>">
 <?php
 $i=0;
+
+
+
+
 
  foreach($arrayValueFixe as $element)
  {
@@ -119,7 +136,7 @@ echo "</div>" ;
 if (isset ( $_POST['archerSelected']))
 {
 	$elements = "";
-
+	$i="";
 foreach($arrayValue as $element)
  {
 
@@ -147,11 +164,12 @@ foreach($arrayValue as $element)
 	catch (Exception $E)
 	{
 		echo 'Erreur SQL !<br>'.$sql.'<br>';
+
 	}
 	}
 
 }
-unset($db);
+unset($d);
 }
 
 ?>

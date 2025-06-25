@@ -186,8 +186,8 @@ th {
 background-color: #eee;
 }
 
-    </style>
-<thead>
+</style>
+<!--<thead>-->
 <tr>
 <?php
 // Entete de colonne
@@ -204,8 +204,8 @@ foreach($arrayValue as $element)
 	echo '</th>' ;
 }
 echo '</tr>' ;
-echo '</thead>' ;
-echo '<tbody>' ;
+//echo '</thead>' ;
+//echo '<tbody>' ;
 // Dumpt DATA
 while ($data = $req->fetch())
 {
@@ -231,7 +231,7 @@ echo '</tr>' ;
 
 
 }
-echo '</tbody>' ;
+//echo '</tbody>' ;
 echo '</table>' ;
 
 echo "<p></p>" ;echo "<p><b><u>Adresse mail de votre selection</u></b></p>" ;echo "<p></p>" ;

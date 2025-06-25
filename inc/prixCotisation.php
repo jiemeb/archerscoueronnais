@@ -1,5 +1,5 @@
 <?php
-$license = array(0 => 75,
+    $license = array(0 => 75,
                 1 => 75,
                 2 => 75,
                 3 => 85,
@@ -7,9 +7,7 @@ $license = array(0 => 75,
                 5 => 100 );
 $kit = 55 ;
 $lot = 15 ;
-$comptePoussins=4 ;
+$comptePoussins=6 ;
 $compteJeunes=20 ;
-$inscription=1 ;        // passer a 1 pour les inscriptions 0 pour ré-inscription
-$annee__fede = 2026 ;
- ?>
-
+$inscription=1 ;
+?>
